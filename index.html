@@ -38,10 +38,15 @@
             cursor: none; /* Hide default cursor for custom one */
         }
 
+        /* Prevent scrolling while preloader is visible */
+        body.loading-state {
+            overflow: hidden !important;
+        }
+
         /* Revert cursor for mobile */
         @media (hover: none) and (pointer: coarse) {
             body { cursor: auto; }
-            #custom-cursor { display: none; }
+            #custom-cursor { display: none !important; }
         }
 
         h1, h2, h3, h4 { font-family: 'DM Serif Display', serif; }
@@ -49,7 +54,9 @@
         /* --- PRELOADER --- */
         #preloader {
             position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
+            top: 0; left: 0; 
+            width: 100vw; 
+            height: 100vh; /* Changed to 100vh for better mobile support */
             background: #fff;
             z-index: 9999;
             display: flex;
@@ -191,15 +198,6 @@
             transition: transform 0.3s ease-in-out;
         }
         #mobile-menu.open { transform: translateX(0); }
-
-        .grain {
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            pointer-events: none;
-            z-index: 50;
-            opacity: 0.04;
-            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='1'/%3E%3C/svg%3E");
-        }
         
         /* Clean Scrollbar */
         ::-webkit-scrollbar { width: 8px; }
@@ -221,7 +219,7 @@
         }
     </style>
 </head>
-<body class="antialiased selection:bg-gray-200 selection:text-black">
+<body class="antialiased selection:bg-gray-200 selection:text-black loading-state">
     
     <div id="preloader">
         <div class="loader-text">Shivam Rai.</div>
@@ -585,18 +583,36 @@
 
     <script>
 
-        // --- PRELOADER ---
-        window.addEventListener("load", () => {
+        // --- PRELOADER FIX ---
+        // We define the removal function separately
+        let preloaderRemoved = false;
+        
+        function removePreloader() {
+            if (preloaderRemoved) return; // Run once only
+            preloaderRemoved = true;
+
             const preloader = document.getElementById("preloader");
-            setTimeout(() => {
-                gsap.to(preloader, {
-                    y: "-100%",
-                    duration: 0.8,
-                    ease: "power2.inOut",
-                    onComplete: () => preloader.style.display = "none"
-                });
-            }, 1500); // 1.5 seconds delay
+            document.body.classList.remove("loading-state"); // Allow scrolling
+
+            gsap.to(preloader, {
+                y: "-100%",
+                duration: 0.8,
+                ease: "power2.inOut",
+                onComplete: () => {
+                    preloader.style.display = "none";
+                }
+            });
+        }
+
+        // 1. Try to run when everything loads
+        window.addEventListener("load", () => {
+             // Small delay for smoothness, then remove
+             setTimeout(removePreloader, 500);
         });
+
+        // 2. Safety Fallback: If 'load' hangs (common on mobile), force remove after 3.5 seconds
+        setTimeout(removePreloader, 3500);
+
 
         // Update Year
         document.getElementById('current-year').innerText = new Date().getFullYear();
