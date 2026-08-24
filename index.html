@@ -1,0 +1,3983 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta
+        name="description"
+        content="Shivam Rai is a UX Designer creating thoughtful, intuitive and human-centered digital experiences."
+    >
+
+    <meta name="author" content="Shivam Rai">
+
+    <title>Shivam Rai — UX Designer</title>
+
+    <link rel="icon" type="image/png" href="Icon/Logo.png">
+
+    <!-- Tailwind -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+
+    <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin
+    >
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet"
+    >
+
+    <!-- Font Awesome -->
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    >
+
+    <!-- GSAP -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+
+    <style>
+
+        /* =====================================================
+           DESIGN SYSTEM
+        ===================================================== */
+
+        :root {
+
+            --bg: #F3F0EA;
+
+            --surface: rgba(255, 255, 255, 0.55);
+
+            --surface-strong: #FFFFFF;
+
+            --text: #1C1B19;
+
+            --muted: #5C554D;
+
+            --border: rgba(80, 70, 55, 0.16);
+
+            --border-light: rgba(255, 255, 255, 0.6);
+
+            --accent: #A17E4F;
+
+            --accent-dark: #745832;
+
+            --accent-soft: #E8DDCD;
+
+            --dark: #1C1B19;
+
+            --dark-soft: #292724;
+
+            --radius-sm: 14px;
+
+            --radius-md: 22px;
+
+            --radius-lg: 32px;
+
+            --shadow-soft:
+                0 10px 30px
+                rgba(28, 27, 25, 0.06);
+
+            --shadow-hover:
+                0 25px 60px
+                rgba(28, 27, 25, 0.14);
+
+        }
+
+
+        /* =====================================================
+           RESET
+        ===================================================== */
+
+        * {
+
+            box-sizing: border-box;
+
+        }
+
+
+        html {
+
+            scroll-behavior: smooth;
+
+        }
+
+
+        body {
+
+            margin: 0;
+
+            font-family:
+                "Inter",
+                sans-serif;
+
+            background:
+                var(--bg);
+
+            color:
+                var(--text);
+
+            overflow-x: hidden;
+
+        }
+
+
+        h1,
+        h2,
+        h3,
+        h4 {
+
+            font-family:
+                "DM Serif Display",
+                serif;
+
+            font-weight: 400;
+
+            letter-spacing:
+                -0.035em;
+
+        }
+
+
+        a {
+
+            text-decoration:
+                none;
+
+        }
+
+
+        button {
+
+            border:
+                none;
+
+            cursor:
+                pointer;
+
+        }
+
+
+        ::selection {
+
+            background:
+                var(--accent);
+
+            color:
+                white;
+
+        }
+
+
+        /* =====================================================
+           SCROLLBAR
+        ===================================================== */
+
+        ::-webkit-scrollbar {
+
+            width: 7px;
+
+        }
+
+
+        ::-webkit-scrollbar-track {
+
+            background:
+                var(--bg);
+
+        }
+
+
+        ::-webkit-scrollbar-thumb {
+
+            background:
+                #B9A78D;
+
+            border-radius:
+                20px;
+
+        }
+
+
+        ::-webkit-scrollbar-thumb:hover {
+
+            background:
+                var(--accent);
+
+        }
+
+
+        /* =====================================================
+           BACKGROUND EFFECTS
+        ===================================================== */
+
+        .ambient {
+
+            position:
+                fixed;
+
+            width:
+                500px;
+
+            height:
+                500px;
+
+            border-radius:
+                50%;
+
+            filter:
+                blur(120px);
+
+            opacity:
+                0.16;
+
+            pointer-events:
+                none;
+
+            z-index:
+                -1;
+
+        }
+
+
+        .ambient-one {
+
+            top:
+                -150px;
+
+            left:
+                -150px;
+
+            background:
+                var(--accent);
+
+        }
+
+
+        .ambient-two {
+
+            right:
+                -200px;
+
+            top:
+                40%;
+
+            background:
+                #C7B49B;
+
+        }
+
+
+        /* =====================================================
+           GLASS
+        ===================================================== */
+
+        .glass {
+
+            background:
+                rgba(255, 255, 255, 0.42);
+
+            backdrop-filter:
+                blur(18px);
+
+            -webkit-backdrop-filter:
+                blur(18px);
+
+            border:
+                1px solid
+                rgba(255, 255, 255, 0.55);
+
+            box-shadow:
+                var(--shadow-soft);
+
+        }
+
+
+        /* =====================================================
+           TYPOGRAPHY
+        ===================================================== */
+
+        .section-label {
+
+            display:
+                inline-flex;
+
+            align-items:
+                center;
+
+            gap:
+                10px;
+
+            font-size:
+                0.68rem;
+
+            font-weight:
+                600;
+
+            letter-spacing:
+                0.18em;
+
+            text-transform:
+                uppercase;
+
+            color:
+                var(--accent);
+
+        }
+
+
+        .section-label::before {
+
+            content:
+                "";
+
+            width:
+                22px;
+
+            height:
+                1px;
+
+            background:
+                var(--accent);
+
+        }
+
+
+        .text-muted {
+
+            color:
+                var(--muted);
+
+        }
+
+
+        /* =====================================================
+           NAVIGATION
+        ===================================================== */
+
+        .nav-wrapper {
+
+            position:
+                fixed;
+
+            top:
+                18px;
+
+            left:
+                0;
+
+            width:
+                100%;
+
+            z-index:
+                50;
+
+        }
+
+
+        .nav {
+
+            width:
+                min(1100px, calc(100% - 32px));
+
+            margin:
+                auto;
+
+            padding:
+                12px 16px 12px 22px;
+
+            border-radius:
+                999px;
+
+            background:
+                rgba(243, 240, 234, 0.65);
+
+            backdrop-filter:
+                blur(22px);
+
+            -webkit-backdrop-filter:
+                blur(22px);
+
+            border:
+                1px solid
+                rgba(255, 255, 255, 0.55);
+
+            box-shadow:
+                0 12px 35px
+                rgba(28, 27, 25, 0.07);
+
+        }
+
+
+        .nav-link {
+
+            position:
+                relative;
+
+            color:
+                var(--muted);
+
+            transition:
+                color 0.3s ease;
+
+        }
+
+
+        .nav-link:hover {
+
+            color:
+                var(--text);
+
+        }
+
+
+        .nav-link::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: -5px;
+            width: 100%;
+            height: 2px;
+            border-radius: 2px;
+            background: var(--accent);
+            transform: scaleX(0);
+            transform-origin: right;
+            transition: transform 0.3s ease;
+        }
+
+        .nav-link:hover::after,
+        .nav-link.active::after {
+            transform: scaleX(1);
+            transform-origin: left;
+        }
+
+        .nav-link.active {
+            color: var(--text);
+            font-weight: 500;
+        }
+
+
+        /* =====================================================
+           BUTTONS
+        ===================================================== */
+
+        .btn-primary {
+
+            display:
+                inline-flex;
+
+            align-items:
+                center;
+
+            justify-content:
+                center;
+
+            gap:
+                10px;
+
+            padding:
+                14px 22px;
+
+            border-radius:
+                999px;
+
+            background:
+                var(--dark);
+
+            color:
+                white;
+
+            border:
+                1px solid
+                var(--dark);
+
+            box-shadow:
+                0 10px 25px
+                rgba(28, 27, 25, 0.14);
+
+            transition:
+                transform 0.3s ease,
+                box-shadow 0.3s ease,
+                background 0.3s ease;
+
+        }
+
+
+        .btn-primary:hover {
+
+            transform:
+                translateY(-3px);
+
+            background:
+                var(--accent-dark);
+
+            box-shadow:
+                0 18px 35px
+                rgba(28, 27, 25, 0.2);
+
+        }
+
+
+        .btn-primary i {
+
+            transition:
+                transform 0.3s ease;
+
+        }
+
+
+        .btn-primary:hover i {
+
+            transform:
+                translateX(3px);
+
+        }
+
+
+        .btn-secondary {
+
+            display:
+                inline-flex;
+
+            align-items:
+                center;
+
+            justify-content:
+                center;
+
+            gap:
+                10px;
+
+            padding:
+                14px 22px;
+
+            border-radius:
+                999px;
+
+            color:
+                var(--text);
+
+            background:
+                rgba(255,255,255,0.38);
+
+            backdrop-filter:
+                blur(10px);
+
+            border:
+                1px solid
+                rgba(255,255,255,0.65);
+
+            transition:
+                transform 0.3s ease,
+                background 0.3s ease,
+                box-shadow 0.3s ease;
+
+        }
+
+
+        .btn-secondary:hover {
+
+            transform:
+                translateY(-3px);
+
+            background:
+                rgba(255,255,255,0.85);
+
+            box-shadow:
+                var(--shadow-soft);
+
+        }
+
+
+        /* =====================================================
+           HERO
+        ===================================================== */
+
+        .hero {
+
+            position:
+                relative;
+
+            min-height:
+                100vh;
+
+            display:
+                flex;
+
+            align-items:
+                center;
+
+            padding-top:
+                110px;
+
+            overflow:
+                hidden;
+
+        }
+
+
+        .hero-grid {
+
+            position:
+                absolute;
+
+            inset:
+                0;
+
+            opacity:
+                0.35;
+
+            pointer-events:
+                none;
+
+            background-image:
+
+                linear-gradient(
+                    rgba(120,110,95,0.08) 1px,
+                    transparent 1px
+                ),
+
+                linear-gradient(
+                    90deg,
+                    rgba(120,110,95,0.08) 1px,
+                    transparent 1px
+                );
+
+            background-size:
+                90px 90px;
+
+            mask-image:
+                linear-gradient(
+                    to bottom,
+                    black,
+                    transparent 85%
+                );
+
+        }
+
+
+        .hero-badge {
+
+            display:
+                inline-flex;
+
+            align-items:
+                center;
+
+            gap:
+                9px;
+
+            padding:
+                9px 14px;
+
+            border-radius:
+                999px;
+
+            background:
+                rgba(255,255,255,0.42);
+
+            border:
+                1px solid
+                rgba(255,255,255,0.6);
+
+            backdrop-filter:
+                blur(12px);
+
+            box-shadow:
+                var(--shadow-soft);
+
+        }
+
+
+        .hero-dot {
+
+            width:
+                7px;
+
+            height:
+                7px;
+
+            border-radius:
+                50%;
+
+            background:
+                var(--accent);
+
+            box-shadow:
+                0 0 0 5px
+                rgba(161,126,79,0.12);
+
+        }
+
+
+        .hero-title span {
+
+            position:
+                relative;
+
+        }
+
+
+        /* Hero title underline removed as requested */
+
+
+        .hero-stats {
+
+            background:
+                rgba(255,255,255,0.38);
+
+            backdrop-filter:
+                blur(18px);
+
+            border:
+                1px solid
+                rgba(255,255,255,0.55);
+
+            border-radius:
+                var(--radius-lg);
+
+            box-shadow:
+                var(--shadow-soft);
+
+        }
+
+
+        .stat {
+
+            position:
+                relative;
+
+            transition:
+                transform 0.3s ease;
+
+        }
+
+
+        .stat:hover {
+
+            transform:
+                translateY(-4px);
+
+        }
+
+
+        /* =====================================================
+           PROJECTS
+        ===================================================== */
+
+        .project {
+
+            padding:
+                3rem;
+
+            margin-bottom:
+                2rem;
+
+            border-radius:
+                var(--radius-lg);
+
+            background:
+                rgba(255,255,255,0.25);
+
+            border:
+                1px solid
+                rgba(255,255,255,0.42);
+
+            transition:
+                transform 0.45s ease,
+                box-shadow 0.45s ease,
+                background 0.45s ease;
+
+        }
+
+
+        .project:hover {
+
+            transform:
+                translateY(-8px);
+
+            background:
+                rgba(255,255,255,0.48);
+
+            box-shadow:
+                var(--shadow-hover);
+
+        }
+
+
+        .project-image {
+
+            position:
+                relative;
+
+            overflow:
+                hidden;
+
+            border-radius:
+                24px;
+
+            background:
+                #E7E1D8;
+
+            box-shadow:
+                0 15px 35px
+                rgba(28,27,25,0.08);
+
+        }
+
+
+        .project-image img {
+
+            width:
+                100%;
+
+            display:
+                block;
+
+            transition:
+                transform 0.8s
+                cubic-bezier(.16,1,.3,1);
+
+        }
+
+
+        .project:hover .project-image img {
+
+            transform:
+                scale(1.06);
+
+        }
+
+
+        .project-overlay {
+
+            position:
+                absolute;
+
+            inset:
+                0;
+
+            display:
+                flex;
+
+            align-items:
+                center;
+
+            justify-content:
+                center;
+
+            background:
+                rgba(28,27,25,0.22);
+
+            backdrop-filter:
+                blur(3px);
+
+            opacity:
+                0;
+
+            transition:
+                opacity 0.35s ease;
+
+        }
+
+
+        .project:hover .project-overlay {
+
+            opacity:
+                1;
+
+        }
+
+
+        .view-project {
+
+            padding:
+                14px 20px;
+
+            border-radius:
+                999px;
+
+            background:
+                rgba(255,255,255,0.82);
+
+            color:
+                var(--text);
+
+            backdrop-filter:
+                blur(12px);
+
+            font-size:
+                0.72rem;
+
+            font-weight:
+                600;
+
+            letter-spacing:
+                0.06em;
+
+            text-transform:
+                uppercase;
+
+            transform:
+                translateY(15px);
+
+            transition:
+                transform 0.35s ease;
+
+        }
+
+
+        .project:hover .view-project {
+
+            transform:
+                translateY(0);
+
+        }
+
+
+        .project-number {
+
+            font-size:
+                0.7rem;
+
+            font-weight:
+                600;
+
+            letter-spacing:
+                0.15em;
+
+            color:
+                var(--accent);
+
+        }
+
+
+        .tag {
+
+            display:
+                inline-flex;
+
+            padding:
+                7px 12px;
+
+            border-radius:
+                999px;
+
+            background:
+                rgba(255,255,255,0.42);
+
+            border:
+                1px solid
+                rgba(255,255,255,0.65);
+
+            color:
+                var(--muted);
+
+            font-size:
+                0.72rem;
+
+            transition:
+                transform 0.25s ease,
+                background 0.25s ease;
+
+        }
+
+
+        .tag:hover {
+
+            transform:
+                translateY(-2px);
+
+            background:
+                var(--accent-soft);
+
+        }
+
+
+        /* =====================================================
+           PROCESS
+        ===================================================== */
+
+        .process-item {
+
+            padding:
+                1.6rem;
+
+            border-radius:
+                var(--radius-md);
+
+            transition:
+                transform 0.3s ease,
+                background 0.3s ease,
+                box-shadow 0.3s ease;
+
+        }
+
+
+        .process-item:hover {
+
+            transform:
+                translateX(8px);
+
+            background:
+                rgba(255,255,255,0.42);
+
+            box-shadow:
+                var(--shadow-soft);
+
+        }
+
+
+        .process-number {
+
+            display:
+                flex;
+
+            align-items:
+                center;
+
+            justify-content:
+                center;
+
+            width:
+                45px;
+
+            height:
+                45px;
+
+            border-radius:
+                50%;
+
+            background:
+                var(--accent-soft);
+
+            color:
+                var(--accent-dark);
+
+            font-size:
+                0.75rem;
+
+            font-weight:
+                600;
+
+        }
+
+
+        /* =====================================================
+           EXPERIENCE
+        ===================================================== */
+
+        .experience-item {
+
+            padding:
+                2rem;
+
+            border-radius:
+                var(--radius-md);
+
+            margin-bottom:
+                1rem;
+
+            border:
+                1px solid
+                transparent;
+
+            transition:
+                transform 0.3s ease,
+                background 0.3s ease,
+                border 0.3s ease;
+
+        }
+
+
+        .experience-item:hover {
+
+            transform:
+                translateX(8px);
+
+            background:
+                rgba(255,255,255,0.38);
+
+            border-color:
+                rgba(255,255,255,0.55);
+
+        }
+
+
+        /* =====================================================
+           ABOUT
+        ===================================================== */
+
+        .about-card {
+
+            padding:
+                2rem;
+
+            border-radius:
+                var(--radius-md);
+
+            transition:
+                transform 0.35s ease,
+                background 0.35s ease,
+                box-shadow 0.35s ease;
+
+        }
+
+
+        .about-card:hover {
+
+            transform:
+                translateY(-7px);
+
+            background:
+                rgba(255,255,255,0.42);
+
+            box-shadow:
+                var(--shadow-soft);
+
+        }
+
+
+        .about-number {
+
+            width:
+                42px;
+
+            height:
+                42px;
+
+            border-radius:
+                50%;
+
+            display:
+                flex;
+
+            align-items:
+                center;
+
+            justify-content:
+                center;
+
+            background:
+                var(--accent-soft);
+
+            color:
+                var(--accent-dark);
+
+            font-size:
+                0.7rem;
+
+            margin-bottom:
+                1.8rem;
+
+        }
+
+
+        /* =====================================================
+           SKILLS
+        ===================================================== */
+
+        .skills-wrapper {
+
+            padding:
+                2rem;
+
+            border-radius:
+                var(--radius-lg);
+
+            background:
+                rgba(255,255,255,0.25);
+
+            border:
+                1px solid
+                rgba(255,255,255,0.45);
+
+        }
+
+
+        .capability {
+
+            display:
+                grid;
+
+            grid-template-columns:
+                75px 1.2fr 2fr;
+
+            gap:
+                2rem;
+
+            align-items:
+                center;
+
+            padding:
+                2rem;
+
+            border-radius:
+                var(--radius-md);
+
+            transition:
+                transform 0.35s ease,
+                background 0.35s ease,
+                box-shadow 0.35s ease;
+
+        }
+
+
+        .capability:hover {
+
+            transform:
+                translateX(10px);
+
+            background:
+                rgba(255,255,255,0.55);
+
+            box-shadow:
+                var(--shadow-soft);
+
+        }
+
+
+        .capability-number {
+
+            width:
+                55px;
+
+            height:
+                55px;
+
+            display:
+                flex;
+
+            align-items:
+                center;
+
+            justify-content:
+                center;
+
+            border-radius:
+                18px;
+
+            background:
+                var(--accent-soft);
+
+            color:
+                var(--accent-dark);
+
+            font-family:
+                "DM Serif Display",
+                serif;
+
+            font-size:
+                1.5rem;
+
+            transition:
+                transform 0.3s ease;
+
+        }
+
+
+        .capability:hover .capability-number {
+
+            transform:
+                rotate(-6deg)
+                scale(1.08);
+
+        }
+
+
+        .capability-title {
+
+            font-size:
+                2rem;
+
+        }
+
+
+        .capability-tags {
+
+            display:
+                flex;
+
+            flex-wrap:
+                wrap;
+
+            gap:
+                8px;
+
+        }
+
+
+        .capability-tags span {
+
+            padding:
+                7px 11px;
+
+            border-radius:
+                999px;
+
+            background:
+                rgba(255,255,255,0.5);
+
+            border:
+                1px solid
+                rgba(255,255,255,0.7);
+
+            color:
+                var(--muted);
+
+            font-size:
+                0.78rem;
+
+            transition:
+                background 0.25s ease,
+                color 0.25s ease,
+                transform 0.25s ease;
+
+        }
+
+
+        .capability-tags span:hover {
+
+            transform:
+                translateY(-2px);
+
+            background:
+                var(--dark);
+
+            color:
+                white;
+
+        }
+
+
+        /* =====================================================
+           LEARNING
+        ===================================================== */
+
+        .learning-panel {
+
+            padding:
+                2rem;
+
+            border-radius:
+                var(--radius-lg);
+
+            background:
+                rgba(255,255,255,0.32);
+
+            border:
+                1px solid
+                rgba(255,255,255,0.5);
+
+            box-shadow:
+                var(--shadow-soft);
+
+        }
+
+
+        .library-item {
+
+            display:
+                grid;
+
+            grid-template-columns:
+                55px 1fr auto;
+
+            gap:
+                1rem;
+
+            align-items:
+                center;
+
+            padding:
+                1.5rem;
+
+            margin-bottom:
+                0.7rem;
+
+            border-radius:
+                var(--radius-md);
+
+            transition:
+                transform 0.3s ease,
+                background 0.3s ease,
+                box-shadow 0.3s ease;
+
+        }
+
+
+        .library-item:hover {
+
+            transform:
+                translateX(8px);
+
+            background:
+                rgba(255,255,255,0.6);
+
+            box-shadow:
+                var(--shadow-soft);
+
+        }
+
+
+        .library-number {
+
+            width:
+                40px;
+
+            height:
+                40px;
+
+            display:
+                flex;
+
+            align-items:
+                center;
+
+            justify-content:
+                center;
+
+            border-radius:
+                50%;
+
+            background:
+                var(--accent-soft);
+
+            color:
+                var(--accent-dark);
+
+            font-size:
+                0.72rem;
+
+        }
+
+
+        .library-arrow {
+
+            width:
+                42px;
+
+            height:
+                42px;
+
+            display:
+                flex;
+
+            align-items:
+                center;
+
+            justify-content:
+                center;
+
+            border-radius:
+                50%;
+
+            background:
+                rgba(255,255,255,0.55);
+
+            border:
+                1px solid
+                rgba(255,255,255,0.7);
+
+            transition:
+                transform 0.3s ease,
+                background 0.3s ease,
+                color 0.3s ease;
+
+        }
+
+
+        .library-item:hover .library-arrow {
+
+            transform:
+                rotate(45deg);
+
+            background:
+                var(--dark);
+
+            color:
+                white;
+
+        }
+
+
+        /* =====================================================
+           PLAYGROUND
+        ===================================================== */
+
+        .gallery-item {
+
+            position:
+                relative;
+
+            overflow:
+                hidden;
+
+            border-radius:
+                22px;
+
+            background:
+                #E7E1D8;
+
+            transition:
+                transform 0.35s ease,
+                box-shadow 0.35s ease;
+
+        }
+
+
+        .gallery-item:hover {
+
+            transform:
+                translateY(-8px);
+
+            box-shadow:
+                var(--shadow-hover);
+
+            z-index:
+                2;
+
+        }
+
+
+        .project-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+
+        .gallery-overlay {
+
+            position:
+                absolute;
+
+            inset:
+                0;
+
+            display:
+                flex;
+
+            align-items:
+                flex-end;
+
+            padding:
+                20px;
+
+            background:
+                linear-gradient(
+                    to top,
+                    rgba(28,27,25,0.78),
+                    transparent 65%
+                );
+
+            opacity:
+                0;
+
+            transition:
+                opacity 0.3s ease;
+
+        }
+
+
+        .gallery-item:hover .gallery-overlay {
+
+            opacity:
+                1;
+
+        }
+
+
+        .behance-card {
+
+            border-radius:
+                22px;
+
+            overflow:
+                hidden;
+
+            transition:
+                transform 0.35s ease,
+                box-shadow 0.35s ease;
+
+        }
+
+
+        .behance-card:hover {
+
+            transform:
+                translateY(-8px);
+
+            box-shadow:
+                var(--shadow-hover);
+
+        }
+
+
+        .behance-card .arrow {
+
+            width:
+                46px;
+
+            height:
+                46px;
+
+            border-radius:
+                50%;
+
+            display:
+                flex;
+
+            align-items:
+                center;
+
+            justify-content:
+                center;
+
+            background:
+                rgba(255,255,255,0.08);
+
+            transition:
+                transform 0.3s ease,
+                background 0.3s ease;
+
+        }
+
+
+        .behance-card:hover .arrow {
+
+            transform:
+                translate(5px,-5px);
+
+            background:
+                var(--accent);
+
+        }
+
+
+        /* =====================================================
+           CONTACT
+        ===================================================== */
+
+        .contact-section {
+
+            position:
+                relative;
+
+            overflow:
+                hidden;
+
+            background:
+                var(--dark);
+
+        }
+
+
+        .contact-section::before {
+
+            content:
+                "";
+
+            position:
+                absolute;
+
+            width:
+                600px;
+
+            height:
+                600px;
+
+            border-radius:
+                50%;
+
+            background:
+                var(--accent);
+
+            filter:
+                blur(160px);
+
+            opacity:
+                0.16;
+
+            top:
+                -250px;
+
+            left:
+                50%;
+
+            transform:
+                translateX(-50%);
+
+        }
+
+
+        .contact-btn-light {
+
+            display:
+                inline-flex;
+
+            align-items:
+                center;
+
+            gap:
+                10px;
+
+            padding:
+                15px 24px;
+
+            border-radius:
+                999px;
+
+            background:
+                var(--bg);
+
+            color:
+                var(--dark);
+
+            transition:
+                transform 0.3s ease,
+                background 0.3s ease;
+
+        }
+
+
+        .contact-btn-light:hover {
+
+            transform:
+                translateY(-4px);
+
+            background:
+                #FFFFFF;
+
+        }
+
+
+        .contact-btn-outline {
+
+            display:
+                inline-flex;
+
+            align-items:
+                center;
+
+            gap:
+                10px;
+
+            padding:
+                15px 24px;
+
+            border-radius:
+                999px;
+
+            border:
+                1px solid
+                rgba(255,255,255,0.2);
+
+            color:
+                white;
+
+            transition:
+                transform 0.3s ease,
+                border 0.3s ease,
+                color 0.3s ease;
+
+        }
+
+
+        .contact-btn-outline:hover {
+
+            transform:
+                translateY(-4px);
+
+            border-color:
+                var(--accent);
+
+            color:
+                #D8BD92;
+
+        }
+
+
+        .social-icon {
+
+            width:
+                45px;
+
+            height:
+                45px;
+
+            border-radius:
+                50%;
+
+            display:
+                flex;
+
+            align-items:
+                center;
+
+            justify-content:
+                center;
+
+            border:
+                1px solid
+                rgba(255,255,255,0.1);
+
+            transition:
+                transform 0.3s ease,
+                color 0.3s ease,
+                border 0.3s ease;
+
+        }
+
+
+        .social-icon:hover {
+
+            transform:
+                translateY(-5px);
+
+            color:
+                #D8BD92;
+
+            border-color:
+                var(--accent);
+
+        }
+
+
+        /* =====================================================
+           MOBILE MENU
+        ===================================================== */
+
+        #mobile-menu {
+            transform: translateY(-110%);
+            backdrop-filter: blur(25px);
+        }
+
+
+        /* =====================================================
+           BACK TO TOP
+        ===================================================== */
+
+        #back-to-top {
+
+            opacity:
+                0;
+
+            transform:
+                translateY(20px)
+                scale(0.9);
+
+            pointer-events:
+                none;
+
+            transition:
+                all 0.3s ease;
+
+        }
+
+
+        #back-to-top.visible {
+
+            opacity:
+                1;
+
+            transform:
+                translateY(0)
+                scale(1);
+
+            pointer-events:
+                auto;
+
+        }
+
+
+        .back-button {
+
+            width:
+                48px;
+
+            height:
+                48px;
+
+            border-radius:
+                50%;
+
+            background:
+                rgba(28,27,25,0.9);
+
+            color:
+                white;
+
+            backdrop-filter:
+                blur(10px);
+
+            box-shadow:
+                0 10px 30px
+                rgba(28,27,25,0.2);
+
+            transition:
+                transform 0.3s ease,
+                background 0.3s ease;
+
+        }
+
+
+        .back-button:hover {
+
+            transform:
+                translateY(-4px);
+
+            background:
+                var(--accent);
+
+        }
+
+
+        /* =====================================================
+           MOBILE
+        ===================================================== */
+
+        @media (max-width: 768px) {
+
+            .project {
+
+                padding:
+                    1.5rem;
+
+            }
+
+
+            .capability {
+
+                grid-template-columns:
+                    60px 1fr;
+
+                gap:
+                    1rem;
+
+            }
+
+
+            .capability-tags {
+
+                grid-column:
+                    1 / -1;
+
+            }
+
+
+            .library-item {
+
+                grid-template-columns:
+                    45px 1fr auto;
+
+            }
+
+
+            .hero-stats {
+
+                border-radius:
+                    24px;
+
+            }
+
+        }
+
+
+        /* =====================================================
+           REDUCED MOTION
+        ===================================================== */
+
+        @media (prefers-reduced-motion: reduce) {
+
+            * {
+
+                animation-duration:
+                    0.01ms !important;
+
+                animation-iteration-count:
+                    1 !important;
+
+                transition-duration:
+                    0.01ms !important;
+
+                scroll-behavior:
+                    auto !important;
+
+            }
+
+        }
+
+        .experience-timeline-line {
+            position: absolute;
+            left: 12px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: rgba(80,70,55,0.1);
+            border-radius: 4px;
+            overflow: hidden;
+            transform: translateX(-50%);
+        }
+        @media (min-width: 768px) {
+            .experience-timeline-line { left: 24px; }
+        }
+
+        .experience-progress {
+            width: 100%;
+            height: 100%;
+            background: var(--accent);
+            transform-origin: top;
+            transform: scaleY(0);
+        }
+
+        .experience-dot {
+            position: absolute;
+            left: -20px;
+            top: 40px;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: var(--bg);
+            border: 2px solid var(--accent);
+            z-index: 10;
+            transform: translateX(-50%);
+        }
+        @media (min-width: 768px) {
+            .experience-dot { left: -24px; }
+        }
+        /* =====================================================
+           CUSTOM SCROLLBAR
+        ===================================================== */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--bg);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: rgba(80, 70, 55, 0.2);
+            border-radius: 5px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: rgba(80, 70, 55, 0.4);
+        }
+        .skill-tag {
+            padding: 8px 20px;
+            border-radius: 100px;
+            border: 1px solid rgba(80,70,55,0.2);
+            font-size: 0.9rem;
+            color: var(--dark);
+            transition: all 0.3s ease;
+            background: rgba(255,255,255,0.7);
+            backdrop-filter: blur(4px);
+            cursor: default;
+        }
+        .skill-tag:hover {
+            background: var(--accent);
+            color: var(--bg);
+            border-color: var(--accent);
+        }
+    </style>
+</head>
+
+
+<body>
+
+<!-- =====================================================
+     PRELOADER
+===================================================== -->
+<div id="preloader" class="fixed inset-0 z-[100] flex items-center justify-center bg-[var(--bg)] overflow-hidden">
+    
+    <!-- Custom Doodles -->
+    <img src="doodles/Balloon.png" alt="Doodle" class="preloader-doodle absolute top-[15%] left-[10%] w-16 opacity-0" />
+    
+    <img src="doodles/Bird.png" alt="Doodle" class="preloader-doodle absolute bottom-[15%] right-[10%] w-20 opacity-0" />
+    
+    <img src="doodles/Ghost.png" alt="Doodle" class="preloader-doodle absolute top-[30%] right-[20%] w-16 opacity-0" />
+
+    <img src="doodles/Rocket.png" alt="Doodle" class="preloader-doodle absolute bottom-[25%] left-[20%] w-20 opacity-0" />
+
+    <img src="doodles/Heart.png" alt="Doodle" class="preloader-doodle absolute top-[60%] left-[30%] w-14 opacity-0" />
+
+    <img src="doodles/ship.png" alt="Doodle" class="preloader-doodle absolute top-[15%] right-[40%] w-16 opacity-0" />
+
+    <div class="relative overflow-hidden h-24 w-full flex items-center justify-center z-10">
+        <h1 class="preloader-word absolute text-5xl md:text-7xl font-serif text-[var(--dark)] translate-y-full opacity-0">Hello.</h1>
+        <h1 class="preloader-word absolute text-5xl md:text-7xl font-serif text-[var(--dark)] translate-y-full opacity-0">Bonjour.</h1>
+        <h1 class="preloader-word absolute text-5xl md:text-7xl font-serif text-[var(--dark)] translate-y-full opacity-0">Hola.</h1>
+        <h1 class="preloader-word absolute text-5xl md:text-7xl font-serif text-[var(--dark)] translate-y-full opacity-0">Namaste.</h1>
+    </div>
+</div>
+
+<!-- BACKGROUND AMBIENCE -->
+
+<div class="ambient ambient-one"></div>
+
+<div class="ambient ambient-two"></div>
+
+
+
+<!-- =====================================================
+     NAVIGATION
+===================================================== -->
+
+<div class="nav-wrapper">
+
+    <nav class="nav flex items-center justify-between">
+
+        <a href="#hero"
+           class="font-serif text-2xl">
+
+            Shivam<span style="color: var(--accent);">.</span>
+
+        </a>
+
+
+        <div class="hidden md:flex items-center gap-7 text-sm">
+
+            <a href="#work" class="nav-link">Work</a>
+
+            <a href="#process" class="nav-link">Process</a>
+
+            <a href="#experience" class="nav-link">Experience</a>
+
+            <a href="#about" class="nav-link">About</a>
+
+        </div>
+
+
+        <div class="hidden md:block">
+
+            <a href="#contact"
+               class="btn-primary text-sm py-3 px-5">
+
+                Let's Talk
+
+                <i class="fas fa-arrow-right text-xs"></i>
+
+            </a>
+
+        </div>
+
+
+        <button
+            id="mobile-menu-btn"
+            class="md:hidden w-10 h-10 rounded-full glass flex items-center justify-center"
+        >
+
+            <i class="fas fa-bars"></i>
+
+        </button>
+
+    </nav>
+
+</div>
+
+
+
+<!-- =====================================================
+     MOBILE MENU
+===================================================== -->
+
+<div
+    id="mobile-menu"
+    class="fixed inset-0 z-[60] bg-[rgba(243,240,234,0.96)] flex flex-col justify-center items-center gap-7"
+>
+
+    <button
+        id="close-menu-btn"
+        class="absolute top-6 right-6 w-11 h-11 rounded-full glass flex items-center justify-center"
+    >
+
+        <i class="fas fa-times"></i>
+
+    </button>
+
+
+    <a href="#work"
+       class="mobile-link text-5xl font-serif">
+
+        Work
+
+    </a>
+
+
+    <a href="#process"
+       class="mobile-link text-5xl font-serif">
+
+        Process
+
+    </a>
+
+
+    <a href="#experience"
+       class="mobile-link text-5xl font-serif">
+
+        Experience
+
+    </a>
+
+
+    <a href="#about"
+       class="mobile-link text-5xl font-serif">
+
+        About
+
+    </a>
+
+
+    <a
+        href="#contact"
+        class="mobile-link text-5xl font-serif"
+        style="color: var(--accent);"
+    >
+
+        Contact
+
+    </a>
+
+</div>
+
+
+
+<main>
+
+
+<!-- =====================================================
+     HERO
+===================================================== -->
+
+<section id="hero" class="hero">
+
+    <div class="hero-grid"></div>
+
+
+    <div class="max-w-6xl mx-auto px-6 w-full relative z-10 pt-4 pb-6 md:pt-6 md:pb-12">
+
+
+        <div class="hero-reveal mb-8">
+
+            <div class="hero-badge">
+
+                <div class="hero-dot"></div>
+
+                <span class="text-xs font-medium tracking-wide text-muted uppercase">
+
+                    UX Designer · Portfolio 2026
+
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <h1 class="hero-title hero-reveal text-6xl md:text-8xl lg:text-[7.5rem] leading-[1.05] tracking-tight max-w-5xl text-dark mb-10">
+
+            I turn complex digital experiences
+
+            <span class="italic font-light" style="color: var(--accent);">
+
+                into clarity.
+
+            </span>
+
+        </h1>
+
+
+        <div class="max-w-2xl hero-reveal mb-12">
+
+            <p class="text-lg md:text-xl leading-relaxed text-muted mb-8">
+
+                I'm <strong style="color: var(--text);">Shivam Rai</strong>, a UX Designer focused on creating thoughtful, intuitive and human-centered digital experiences. I combine structured problem-solving, visual design and technology to turn complex ideas into products that feel simple to use.
+
+            </p>
+
+
+            <div class="flex flex-wrap items-center gap-4">
+
+                <a href="#work" class="btn-primary">
+
+                    Explore My Work
+
+                    <i class="fas fa-arrow-down ml-1 text-xs"></i>
+
+                </a>
+
+
+                <a href="LatestResume.pdf" download class="btn-secondary">
+
+                    Download Resume
+
+                    <i class="fas fa-download ml-1 text-xs"></i>
+
+                </a>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- HERO STATS -->
+
+        <div class="hero-stats hero-reveal grid grid-cols-2 md:grid-cols-4 gap-6 mt-20 p-6 md:p-8">
+
+            <div class="stat flex flex-col justify-center">
+
+                <p class="font-serif text-3xl md:text-4xl text-dark">
+
+                    1.8+
+
+                </p>
+
+                <p class="text-sm text-muted mt-1 font-medium">
+
+                    Years Experience
+
+                </p>
+
+            </div>
+
+
+            <div class="stat flex flex-col justify-center">
+
+                <p class="font-serif text-3xl md:text-4xl text-dark">
+
+                    UX / UI
+
+                </p>
+
+                <p class="text-sm text-muted mt-1 font-medium">
+
+                    Product Design
+
+                </p>
+
+            </div>
+
+
+            <div class="stat flex flex-col justify-center">
+
+                <p class="font-serif text-3xl md:text-4xl text-dark">
+
+                    Enterprise
+
+                </p>
+
+                <p class="text-sm text-muted mt-1 font-medium">
+
+                    Professional Focus
+
+                </p>
+
+            </div>
+
+
+            <div class="stat flex flex-col justify-center">
+
+                <p class="font-serif text-3xl md:text-4xl text-dark">
+
+                    End-to-End
+
+                </p>
+
+                <p class="text-sm text-muted mt-1 font-medium">
+
+                    Problem to Prototype
+
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     SELECTED WORK
+===================================================== -->
+
+<section id="work" class="max-w-6xl mx-auto px-6 py-32">
+
+    <div class="max-w-3xl mb-16">
+
+        <p class="section-label mb-6">
+
+            Selected Work
+
+        </p>
+
+
+        <h2 class="text-5xl md:text-7xl leading-[0.95]">
+
+            A selection of problems
+
+            <span
+                class="italic"
+                style="color: var(--accent);"
+            >
+
+                worth solving.
+
+            </span>
+
+        </h2>
+
+    </div>
+
+
+
+    <!-- PROJECT 01 -->
+
+    <article class="project grid md:grid-cols-2 gap-12 items-center">
+
+        <div>
+
+            <p class="project-number mb-6">
+
+                01 / FEATURED PROJECT
+
+            </p>
+
+
+            <h3 class="text-5xl md:text-6xl leading-[0.95] mb-7">
+
+                IRCTC Website
+
+                <span
+                    class="italic"
+                    style="color: var(--accent);"
+                >
+
+                    Redesign
+
+                </span>
+
+            </h3>
+
+
+            <p class="text-lg text-muted leading-relaxed mb-7">
+
+                Reimagining the experience of navigating and booking
+                tickets on one of India's most widely used railway
+                platforms.
+
+                The goal was to simplify complex journeys, improve
+                information clarity and reduce unnecessary friction.
+
+            </p>
+
+
+            <div class="flex flex-wrap gap-2 mb-8">
+
+                <span class="tag">User Research</span>
+
+                <span class="tag">User Flows</span>
+
+                <span class="tag">Wireframing</span>
+
+                <span class="tag">UI Design</span>
+
+                <span class="tag">Prototyping</span>
+
+            </div>
+
+
+            <a
+                href="https://www.behance.net/gallery/230112253/IRCTC-Website-Redesign-Case-Study"
+                target="_blank"
+                class="btn-primary"
+            >
+
+                View Project
+
+                <i class="fas fa-arrow-up-right-from-square text-xs"></i>
+
+            </a>
+
+        </div>
+
+
+        <a
+            href="https://www.behance.net/gallery/230112253/IRCTC-Website-Redesign-Case-Study"
+            target="_blank"
+            class="project-image"
+        >
+
+            <img
+                src="images/Case Study 2.png"
+                alt="IRCTC Website Redesign"
+            >
+
+            <div class="project-overlay">
+
+                <div class="view-project">
+
+                    View Case Study
+
+                    <i class="fas fa-arrow-right ml-2"></i>
+
+                </div>
+
+            </div>
+
+        </a>
+
+    </article>
+
+
+
+    <!-- PROJECT 02 -->
+
+    <article class="project grid md:grid-cols-2 gap-12 items-center">
+
+        <a
+            href="https://www.behance.net/gallery/229729503/A-Local-Artisans-Marketplace-UIUX-Case-Study"
+            target="_blank"
+            class="project-image order-2 md:order-1"
+        >
+
+            <img
+                src="images/Project 201.png"
+                alt="Local Artisans Marketplace"
+            >
+
+            <div class="project-overlay">
+
+                <div class="view-project">
+
+                    View Case Study
+
+                    <i class="fas fa-arrow-right ml-2"></i>
+
+                </div>
+
+            </div>
+
+        </a>
+
+
+        <div class="order-1 md:order-2">
+
+            <p class="project-number mb-6">
+
+                02 / FEATURED PROJECT
+
+            </p>
+
+
+            <h3 class="text-5xl md:text-6xl leading-[0.95] mb-7">
+
+                Local Artisans
+
+                <span
+                    class="italic"
+                    style="color: var(--accent);"
+                >
+
+                    Marketplace
+
+                </span>
+
+            </h3>
+
+
+            <p class="text-lg text-muted leading-relaxed mb-7">
+
+                A digital marketplace designed to connect local
+                artisans with a wider audience.
+
+                The experience focused on discovery, storytelling
+                and making the journey between creators and customers
+                feel more meaningful.
+
+            </p>
+
+
+            <div class="flex flex-wrap gap-2 mb-8">
+
+                <span class="tag">UX Design</span>
+
+                <span class="tag">E-Commerce</span>
+
+                <span class="tag">Information Architecture</span>
+
+                <span class="tag">Visual Design</span>
+
+                <span class="tag">Prototyping</span>
+
+            </div>
+
+
+            <a
+                href="https://www.behance.net/gallery/229729503/A-Local-Artisans-Marketplace-UIUX-Case-Study"
+                target="_blank"
+                class="btn-primary"
+            >
+
+                View Project
+
+                <i class="fas fa-arrow-up-right-from-square text-xs"></i>
+
+            </a>
+
+        </div>
+
+    </article>
+
+
+    <div class="mt-12 text-center">
+
+        <a
+            href="https://www.behance.net/shivamrai45"
+            target="_blank"
+            class="btn-secondary"
+        >
+
+            View More Work on Behance
+
+            <i class="fab fa-behance"></i>
+
+        </a>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     PROCESS
+===================================================== -->
+<section id="process">
+    <div class="max-w-6xl mx-auto px-6 py-32">
+        <p class="section-label mb-6">How I Work</p>
+        <h2 class="text-5xl md:text-7xl leading-[0.95] mb-24">
+            From uncertainty <span class="italic" style="color: var(--accent);">to clarity.</span>
+        </h2>
+
+        <div class="relative mt-16">
+            <!-- Timeline line -->
+            <div class="absolute top-6 left-6 right-6 h-[2px] bg-gray-200 hidden md:block">
+                <div class="process-line-progress h-full bg-[var(--accent)] w-0"></div>
+            </div>
+
+            <div class="grid md:grid-cols-4 gap-12 md:gap-6 relative">
+                <!-- Step 1 -->
+                <div class="process-step">
+                    <div class="w-12 h-12 rounded-full bg-[var(--accent)] text-white flex items-center justify-center font-serif text-xl relative mb-8 mx-auto md:mx-0 z-10 transition-transform hover:scale-110 shadow-lg">
+                        1
+                    </div>
+                    <h3 class="text-2xl mb-4 text-center md:text-left">Understand</h3>
+                    <p class="text-muted text-sm leading-relaxed text-center md:text-left">
+                        Explore users, context, business goals and the actual problem behind the request.
+                    </p>
+                </div>
+                
+                <!-- Step 2 -->
+                <div class="process-step">
+                    <div class="w-12 h-12 rounded-full bg-[var(--accent)] text-white flex items-center justify-center font-serif text-xl relative mb-8 mx-auto md:mx-0 z-10 transition-transform hover:scale-110 shadow-lg">
+                        2
+                    </div>
+                    <h3 class="text-2xl mb-4 text-center md:text-left">Structure</h3>
+                    <p class="text-muted text-sm leading-relaxed text-center md:text-left">
+                        Organize information, user journeys and flows into something logical and easy to navigate.
+                    </p>
+                </div>
+
+                <!-- Step 3 -->
+                <div class="process-step">
+                    <div class="w-12 h-12 rounded-full bg-[var(--accent)] text-white flex items-center justify-center font-serif text-xl relative mb-8 mx-auto md:mx-0 z-10 transition-transform hover:scale-110 shadow-lg">
+                        3
+                    </div>
+                    <h3 class="text-2xl mb-4 text-center md:text-left">Explore</h3>
+                    <p class="text-muted text-sm leading-relaxed text-center md:text-left">
+                        Turn ideas into wireframes, interfaces and prototypes that can be experienced.
+                    </p>
+                </div>
+
+                <!-- Step 4 -->
+                <div class="process-step">
+                    <div class="w-12 h-12 rounded-full bg-[var(--accent)] text-white flex items-center justify-center font-serif text-xl relative mb-8 mx-auto md:mx-0 z-10 transition-transform hover:scale-110 shadow-lg">
+                        4
+                    </div>
+                    <h3 class="text-2xl mb-4 text-center md:text-left">Refine</h3>
+                    <p class="text-muted text-sm leading-relaxed text-center md:text-left">
+                        Iterate through feedback, improve details and make sure the experience feels intentional.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+<!-- =====================================================
+     EXPERIENCE
+===================================================== -->
+
+<section id="experience" class="max-w-6xl mx-auto px-6 py-32">
+    <div class="mb-16">
+        <p class="section-label mb-6">Experience</p>
+        <h2 class="text-5xl md:text-7xl leading-[0.95] mb-8">
+            The journey <span class="italic" style="color: var(--accent);">so far.</span>
+        </h2>
+        <p class="text-lg text-muted leading-relaxed max-w-2xl">
+            My journey into UX started with technology and gradually shifted toward understanding how people experience digital products.
+        </p>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-6">
+        <!-- Main Bento Box (Current Role) -->
+        <div class="experience-bento md:col-span-2 glass rounded-[2.5rem] p-10 relative overflow-hidden group hover:-translate-y-2 transition-transform duration-500">
+            <div class="absolute top-0 right-0 w-64 h-64 bg-[var(--accent)] rounded-full blur-[100px] opacity-10 group-hover:opacity-30 transition-opacity duration-700"></div>
+            <p class="section-label mb-5 relative z-10">2024 — Present</p>
+            <h3 class="text-4xl md:text-5xl mb-4 relative z-10">Junior UX Designer</h3>
+            <p class="text-muted text-xl mb-8 font-serif italic relative z-10">Wipro Limited</p>
+            <p class="text-muted leading-relaxed max-w-lg relative z-10">Contributing to digital experiences for enterprise projects through user flows, interface design, prototyping and collaboration with cross-functional teams.</p>
+        </div>
+
+        <!-- Secondary Bento Box (Freelance) -->
+        <div class="experience-bento glass rounded-[2.5rem] p-10 relative overflow-hidden group hover:-translate-y-2 transition-transform duration-500">
+            <p class="section-label mb-5 relative z-10">2023 — 2024</p>
+            <h3 class="text-3xl mb-4 relative z-10">Freelance UI/UX</h3>
+            <p class="text-muted mb-6 font-serif italic relative z-10">Independent</p>
+            <p class="text-muted leading-relaxed relative z-10">Translating ideas into structured, polished and usable experiences.</p>
+        </div>
+
+        <!-- Tertiary Bento Box (Education) -->
+        <div class="experience-bento md:col-span-3 glass rounded-[2rem] p-10 md:px-16 flex flex-col md:flex-row md:items-center justify-between group hover:-translate-y-1 transition-transform duration-500 relative overflow-hidden">
+            <div class="absolute bottom-0 left-0 w-full h-1/2 bg-gradient-to-t from-[var(--accent)] to-transparent opacity-0 group-hover:opacity-5 transition-opacity duration-700"></div>
+            <div class="relative z-10 mb-6 md:mb-0">
+                <p class="section-label mb-3">2020 — 2023</p>
+                <h3 class="text-3xl">Bachelor of Computer Applications</h3>
+            </div>
+            <div class="relative z-10 md:text-right">
+                <p class="text-xl font-serif italic text-muted">Graphic Era University</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+<!-- =====================================================
+     SKILLS
+===================================================== -->
+<section id="skills">
+    <div class="max-w-6xl mx-auto px-6 py-32 border-t border-gray-200">
+        <div class="grid md:grid-cols-12 gap-12">
+            
+            <!-- Left Side Title -->
+            <div class="md:col-span-5">
+                <p class="section-label mb-6">Skills & Tools</p>
+                <h2 class="text-5xl md:text-7xl leading-[0.95] mb-8">
+                    What I <span class="italic" style="color: var(--accent);">bring.</span>
+                </h2>
+                <p class="text-lg text-muted leading-relaxed">
+                    A mix of UX thinking, visual design and technical understanding that helps me move from an early problem to a considered digital experience.
+                </p>
+            </div>
+
+            <!-- Right Side Tags -->
+            <div class="md:col-span-7 flex flex-col justify-center gap-10">
+                
+                <!-- Category 1 -->
+                <div>
+                    <h3 class="text-sm uppercase tracking-widest text-muted mb-4 font-semibold">UX Thinking</h3>
+                    <div class="flex flex-wrap gap-3">
+                        <span class="skill-tag">User Flows</span>
+                        <span class="skill-tag">Information Architecture</span>
+                        <span class="skill-tag">Wireframing</span>
+                        <span class="skill-tag">Problem Framing</span>
+                        <span class="skill-tag">User-Centered Design</span>
+                    </div>
+                </div>
+
+                <!-- Category 2 -->
+                <div>
+                    <h3 class="text-sm uppercase tracking-widest text-muted mb-4 font-semibold">Interface Design</h3>
+                    <div class="flex flex-wrap gap-3">
+                        <span class="skill-tag">Visual Hierarchy</span>
+                        <span class="skill-tag">Responsive Design</span>
+                        <span class="skill-tag">Interaction Design</span>
+                        <span class="skill-tag">Design Systems</span>
+                        <span class="skill-tag">Prototyping</span>
+                    </div>
+                </div>
+
+                <!-- Category 3 -->
+                <div>
+                    <h3 class="text-sm uppercase tracking-widest text-muted mb-4 font-semibold">Tools & Collaboration</h3>
+                    <div class="flex flex-wrap gap-3">
+                        <span class="skill-tag">Figma</span>
+                        <span class="skill-tag">Adobe Illustrator</span>
+                        <span class="skill-tag">HTML/CSS/JS</span>
+                        <span class="skill-tag">Developer Handoff</span>
+                        <span class="skill-tag">Stakeholder Communication</span>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+<!-- =====================================================
+     LEARNING
+===================================================== -->
+
+<!-- =====================================================
+     LEARNING
+===================================================== -->
+<section id="learning">
+    <div class="max-w-6xl mx-auto px-6 py-32 border-t border-gray-200">
+        
+        <div class="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-8">
+            <div>
+                <p class="section-label mb-6">Learning</p>
+                <h2 class="text-5xl md:text-7xl leading-[0.95]">
+                    Always <span class="italic" style="color: var(--accent);">learning.</span>
+                </h2>
+            </div>
+            <div class="max-w-md">
+                <p class="text-lg text-muted leading-relaxed">
+                    Learning doesn't stop when a course ends. Some of the most valuable learning comes from experimenting with new ideas and constantly asking how an experience could be made better.
+                </p>
+            </div>
+        </div>
+
+        <div class="learning-list border-t border-gray-300 relative">
+            <!-- Item 1 -->
+            <a href="Certificates/Google UX Design Certificate.jpg" target="_blank" data-image="Certificates/Google UX Design Certificate.jpg" class="learning-row group flex flex-col md:flex-row md:items-center justify-between py-8 border-b border-gray-300 transition-colors hover:border-[var(--accent)] px-4 -mx-4 cursor-none">
+                <div class="flex items-center gap-8 mb-4 md:mb-0 z-10">
+                    <span class="text-sm font-serif text-muted group-hover:text-[var(--accent)] transition-colors">01</span>
+                    <h3 class="text-3xl group-hover:text-[var(--accent)] transition-colors">Google UX Design</h3>
+                </div>
+                <div class="flex items-center gap-12 z-10">
+                    <p class="text-muted group-hover:text-[var(--dark)] transition-colors">Professional Certificate</p>
+                    <i class="fas fa-arrow-right -rotate-45 text-xl opacity-0 group-hover:opacity-100 transition-all transform group-hover:translate-x-2 group-hover:-translate-y-2 text-[var(--accent)]"></i>
+                </div>
+            </a>
+
+            <!-- Item 2 -->
+            <a href="Certificates/Udemy_Certificate.png" target="_blank" data-image="Certificates/Udemy_Certificate.png" class="learning-row group flex flex-col md:flex-row md:items-center justify-between py-8 border-b border-gray-300 transition-colors hover:border-[var(--accent)] px-4 -mx-4 cursor-none">
+                <div class="flex items-center gap-8 mb-4 md:mb-0 z-10">
+                    <span class="text-sm font-serif text-muted group-hover:text-[var(--accent)] transition-colors">02</span>
+                    <h3 class="text-3xl group-hover:text-[var(--accent)] transition-colors">Web & Mobile Design</h3>
+                </div>
+                <div class="flex items-center gap-12 z-10">
+                    <p class="text-muted group-hover:text-[var(--dark)] transition-colors">Complete UI/UX Design Program · Udemy</p>
+                    <i class="fas fa-arrow-right -rotate-45 text-xl opacity-0 group-hover:opacity-100 transition-all transform group-hover:translate-x-2 group-hover:-translate-y-2 text-[var(--accent)]"></i>
+                </div>
+            </a>
+
+            <!-- Item 3 -->
+            <a href="Certificates/Accenture_Certification.png" target="_blank" data-image="Certificates/Accenture_Certification.png" class="learning-row group flex flex-col md:flex-row md:items-center justify-between py-8 border-b border-gray-300 transition-colors hover:border-[var(--accent)] px-4 -mx-4 cursor-none">
+                <div class="flex items-center gap-8 mb-4 md:mb-0 z-10">
+                    <span class="text-sm font-serif text-muted group-hover:text-[var(--accent)] transition-colors">03</span>
+                    <h3 class="text-3xl group-hover:text-[var(--accent)] transition-colors">Digital Skills: UX</h3>
+                </div>
+                <div class="flex items-center gap-12 z-10">
+                    <p class="text-muted group-hover:text-[var(--dark)] transition-colors">User Experience Program · Accenture</p>
+                    <i class="fas fa-arrow-right -rotate-45 text-xl opacity-0 group-hover:opacity-100 transition-all transform group-hover:translate-x-2 group-hover:-translate-y-2 text-[var(--accent)]"></i>
+                </div>
+            </a>
+        </div>
+
+        <div class="mt-12 flex justify-center">
+            <a href="https://www.linkedin.com/in/shivamrai45/details/certifications/" target="_blank" class="btn-secondary magnetic inline-flex items-center">
+                View all on LinkedIn
+                <i class="fab fa-linkedin ml-3 text-lg"></i>
+            </a>
+        </div>
+
+    </div>
+</section>
+
+
+
+<!-- =====================================================
+     PLAYGROUND
+===================================================== -->
+
+<section id="playground">
+
+    <div class="max-w-6xl mx-auto px-6 py-32">
+
+        <div class="flex flex-col md:flex-row justify-between gap-10 mb-16">
+
+            <div>
+
+                <p class="section-label mb-6">
+
+                    Playground
+
+                </p>
+
+
+                <h2 class="text-5xl md:text-7xl leading-[0.95]">
+
+                    Beyond the
+
+                    <span
+                        class="italic"
+                        style="color: var(--accent);"
+                    >
+
+                        case studies.
+
+                    </span>
+
+                </h2>
+
+            </div>
+
+
+            <p class="max-w-sm text-muted leading-relaxed md:self-end">
+
+                Interface explorations, visual concepts and ideas
+                created while experimenting with different approaches
+                to digital design.
+
+            </p>
+
+        </div>
+
+
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+
+            <div class="gallery-item aspect-square">
+
+                <img
+                    src="Design Work/Bean & Bloom (3).png"
+                    alt="Bean and Bloom"
+                >
+
+                <div class="gallery-overlay text-white">
+
+                    <div>
+
+                        <p class="font-semibold">
+
+                            Bean & Bloom
+
+                        </p>
+
+                        <p class="text-xs text-gray-300">
+
+                            Web Exploration
+
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="gallery-item aspect-square">
+
+                <img
+                    src="images/Project 401.png"
+                    alt="Glass Interface"
+                >
+
+                <div class="gallery-overlay text-white">
+
+                    <div>
+
+                        <p class="font-semibold">
+
+                            Glass Interface
+
+                        </p>
+
+                        <p class="text-xs text-gray-300">
+
+                            UI Exploration
+
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="gallery-item aspect-square">
+
+                <img
+                    src="images/Project 901.png"
+                    alt="Website Design"
+                >
+
+                <div class="gallery-overlay text-white">
+
+                    <div>
+
+                        <p class="font-semibold">
+
+                            Website Concept
+
+                        </p>
+
+                        <p class="text-xs text-gray-300">
+
+                            Interface Design
+
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="gallery-item aspect-square">
+
+                <img
+                    src="Design Work/Design (15).png"
+                    alt="Visual Design"
+                >
+
+                <div class="gallery-overlay text-white">
+
+                    <div>
+
+                        <p class="font-semibold">
+
+                            Visual Concept
+
+                        </p>
+
+                        <p class="text-xs text-gray-300">
+
+                            Design Exploration
+
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="gallery-item aspect-square">
+
+                <img
+                    src="Design Work/Design (16).png"
+                    alt="Design Concept"
+                >
+
+                <div class="gallery-overlay text-white">
+
+                    <div>
+
+                        <p class="font-semibold">
+
+                            Interface Concept
+
+                        </p>
+
+                        <p class="text-xs text-gray-300">
+
+                            Visual Exploration
+
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="gallery-item aspect-square">
+
+                <img
+                    src="Design Work/Design (1).png"
+                    alt="Mobile UI"
+                >
+
+                <div class="gallery-overlay text-white">
+
+                    <div>
+
+                        <p class="font-semibold">
+
+                            Mobile UI
+
+                        </p>
+
+                        <p class="text-xs text-gray-300">
+
+                            Product Exploration
+
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="gallery-item aspect-square">
+
+                <img
+                    src="Design Work/Design (2).png"
+                    alt="Visual Exploration"
+                >
+
+                <div class="gallery-overlay text-white">
+
+                    <div>
+
+                        <p class="font-semibold">
+
+                            Digital Concept
+
+                        </p>
+
+                        <p class="text-xs text-gray-300">
+
+                            UI Exploration
+
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <a
+                href="https://www.behance.net/shivamrai45"
+                target="_blank"
+                class="behance-card group aspect-square flex flex-col justify-between p-7 text-white"
+                style="background: var(--dark);"
+            >
+
+                <p class="text-xs uppercase tracking-widest text-gray-400">
+
+                    More Work
+
+                </p>
+
+
+                <div>
+
+                    <p class="font-serif text-3xl leading-tight">
+
+                        The rest lives
+
+                        on Behance.
+
+                    </p>
+
+
+                    <div class="flex items-center justify-between mt-7">
+
+                        <p
+                            class="text-sm"
+                            style="color: #D5C4A8;"
+                        >
+
+                            View Profile
+
+                        </p>
+
+
+                        <div class="arrow transition-transform duration-300 group-hover:rotate-45">
+
+                            <i class="fas fa-arrow-right -rotate-45"></i>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     CONTACT
+===================================================== -->
+
+<section id="contact" class="contact-section">
+
+    <div
+        class="max-w-6xl mx-auto px-6 py-32 md:py-40 text-center relative z-10"
+    >
+
+        <p
+            class="section-label mb-7"
+            style="color: #D8BD92;"
+        >
+
+            Get In Touch
+
+        </p>
+
+
+        <h2
+            class="text-white text-5xl md:text-8xl leading-[0.92] max-w-5xl mx-auto"
+        >
+
+            Let's create something
+
+            <span
+                class="italic"
+                style="color: #D8BD92;"
+            >
+
+                meaningful.
+
+            </span>
+
+        </h2>
+
+
+        <p
+            class="text-gray-400 text-lg leading-relaxed max-w-2xl mx-auto mt-10"
+        >
+
+            Whether it's a new opportunity, an interesting product
+            challenge or simply a conversation about design,
+            I'm always open to connecting.
+
+        </p>
+
+
+        <div class="flex flex-wrap justify-center gap-4 mt-12">
+
+            <a
+                href="mailto:shivurai138@gmail.com"
+                class="contact-btn-light copy-email-btn magnetic"
+            >
+
+                <span class="email-text">Say Hello</span>
+
+                <i class="fas fa-arrow-right email-icon ml-2"></i>
+
+            </a>
+
+
+            <a
+                href="https://www.linkedin.com/in/shivamrai45/"
+                target="_blank"
+                class="contact-btn-outline"
+            >
+
+                LinkedIn
+
+                <i class="fab fa-linkedin"></i>
+
+            </a>
+
+        </div>
+
+
+        <div class="flex justify-center gap-4 mt-14 text-gray-400">
+
+            <a
+                href="https://www.figma.com/@RaiShivu"
+                target="_blank"
+                class="social-icon"
+            >
+
+                <i class="fab fa-figma"></i>
+
+            </a>
+
+
+            <a
+                href="https://www.behance.net/shivamrai45"
+                target="_blank"
+                class="social-icon"
+            >
+
+                <i class="fab fa-behance"></i>
+
+            </a>
+
+
+            <a
+                href="mailto:shivurai138@gmail.com"
+                class="social-icon"
+            >
+
+                <i class="fas fa-envelope"></i>
+
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     FOOTER
+===================================================== -->
+
+<footer class="bg-[#171614] text-gray-500">
+
+    <div
+        class="max-w-6xl mx-auto px-6 py-8 flex flex-col md:flex-row justify-between items-center gap-4 text-sm"
+    >
+
+        <p>
+
+            ©
+            <span id="current-year"></span>
+            Shivam Rai.
+
+        </p>
+
+
+        <p>
+
+            Designed with intention.
+
+        </p>
+
+    </div>
+
+</footer>
+
+
+</main>
+
+
+
+<!-- =====================================================
+     BACK TO TOP
+===================================================== -->
+
+<div
+    id="back-to-top"
+    class="fixed bottom-7 right-7 z-50"
+>
+
+    <button
+        class="back-button"
+        aria-label="Back to top"
+    >
+
+        <i class="fas fa-arrow-up"></i>
+
+    </button>
+
+</div>
+
+
+
+<!-- =====================================================
+     JAVASCRIPT
+===================================================== -->
+<div id="cursor-image" class="fixed pointer-events-none z-[100] w-72 h-48 bg-cover bg-center rounded-xl shadow-2xl opacity-0 transform -translate-x-1/2 -translate-y-1/2" style="left: -100px; top: -100px; transition: background-image 0.2s ease;"></div>
+
+<script>
+
+    /* CURRENT YEAR */
+
+    document.getElementById(
+        "current-year"
+    ).textContent =
+        new Date().getFullYear();
+
+
+
+    /* MOBILE MENU */
+
+    const mobileMenu =
+        document.getElementById(
+            "mobile-menu"
+        );
+
+    const mobileMenuBtn =
+        document.getElementById(
+            "mobile-menu-btn"
+        );
+
+    const closeMenuBtn =
+        document.getElementById(
+            "close-menu-btn"
+        );
+
+    const mobileLinks =
+        document.querySelectorAll(
+            ".mobile-link"
+        );
+
+
+    /* MOBILE MENU GSAP */
+    gsap.set(mobileMenu, { yPercent: -110 });
+    const menuTl = gsap.timeline({ paused: true });
+    menuTl.to(mobileMenu, { yPercent: 0, duration: 0.7, ease: "power4.inOut" })
+          .fromTo(".mobile-link", 
+                { y: 50, opacity: 0 }, 
+                { y: 0, opacity: 1, duration: 0.5, stagger: 0.1, ease: "power3.out" }, 
+                "-=0.3");
+
+    mobileMenuBtn.addEventListener("click", () => menuTl.play());
+    closeMenuBtn.addEventListener("click", () => menuTl.reverse());
+    mobileLinks.forEach(link => {
+        link.addEventListener("click", () => menuTl.reverse());
+    });
+
+
+
+    /* BACK TO TOP */
+
+    const backToTop =
+        document.getElementById(
+            "back-to-top"
+        );
+
+
+    window.addEventListener(
+        "scroll",
+        () => {
+
+            if (
+                window.scrollY > 600
+            ) {
+
+                backToTop.classList.add(
+                    "visible"
+                );
+
+            }
+
+            else {
+
+                backToTop.classList.remove(
+                    "visible"
+                );
+
+            }
+
+        }
+    );
+
+
+    backToTop.addEventListener(
+        "click",
+        () => {
+
+            window.scrollTo({
+
+                top:
+                    0,
+
+                behavior:
+                    "smooth"
+
+            });
+
+        }
+    );
+
+
+
+    /* GSAP */
+
+    gsap.registerPlugin(
+        ScrollTrigger
+    );
+
+
+    /* PRELOADER & HERO */
+    window.scrollTo(0, 0); // Ensure at top
+    const preloaderTl = gsap.timeline();
+    const words = gsap.utils.toArray('.preloader-word');
+
+    gsap.to('.preloader-doodle', {
+        opacity: 0.6,
+        scale: 1.2,
+        rotation: 15,
+        duration: 0.8,
+        stagger: {
+            each: 0.2,
+            from: "random"
+        },
+        ease: "power2.out",
+        yoyo: true,
+        repeat: -1
+    });
+    
+    words.forEach((word, i) => {
+        const isLast = i === words.length - 1;
+        preloaderTl.to(word, {
+            y: "0%",
+            opacity: 1,
+            duration: 0.4,
+            ease: "power2.out"
+        });
+        
+        if (!isLast) {
+            preloaderTl.to(word, {
+                y: "-100%",
+                opacity: 0,
+                duration: 0.3,
+                ease: "power2.in"
+            }, "+=0.15");
+        } else {
+            preloaderTl.to(word, {
+                y: "0%",
+                opacity: 1,
+                duration: 0.5
+            });
+        }
+    });
+
+    preloaderTl.to("#preloader", {
+        y: "-100%",
+        duration: 0.8,
+        ease: "power4.inOut"
+    }, "-=0.2")
+    .from(".hero-reveal", {
+        y: 40,
+        opacity: 0,
+        duration: 1,
+        stagger: 0.15,
+        ease: "power3.out"
+    }, "-=0.4");
+
+
+
+    /* PROJECTS */
+
+    gsap.utils.toArray(
+        ".project"
+    ).forEach(
+        project => {
+
+            gsap.from(
+                project,
+                {
+
+                    scrollTrigger: {
+
+                        trigger:
+                            project,
+
+                        start: "top 88%",
+                        toggleActions: "play reverse play reverse"
+
+                    },
+
+                    y:
+                        50,
+
+                    opacity:
+                        0,
+
+                    duration:
+                        0.9,
+
+                    ease:
+                        "power3.out"
+
+                }
+            );
+
+        }
+    );
+
+
+
+    /* EXPERIENCE BENTO (NEW) */
+    gsap.utils.toArray(".experience-bento").forEach((bento, i) => {
+        gsap.from(bento, {
+            scrollTrigger: {
+                trigger: bento,
+                start: "top 85%",
+                toggleActions: "play reverse play reverse"
+            },
+            y: 50,
+            opacity: 0,
+            duration: 0.9,
+            ease: "power4.out",
+            delay: i * 0.15
+        });
+    });
+
+    /* PROCESS TIMELINE (NEW) */
+    gsap.utils.toArray(".process-step").forEach((step, i) => {
+        gsap.from(step, {
+            scrollTrigger: {
+                trigger: step,
+                start: "top 85%",
+                toggleActions: "play reverse play reverse"
+            },
+            y: 40,
+            opacity: 0,
+            duration: 0.8,
+            ease: "power3.out",
+            delay: i * 0.1
+        });
+    });
+
+    gsap.to(".process-line-progress", {
+        scrollTrigger: {
+            trigger: "#process",
+            start: "top 60%",
+            end: "bottom 80%",
+            scrub: 1
+        },
+        width: "100%",
+        ease: "none"
+    });
+
+    /* SKILLS TAGS */
+    gsap.utils.toArray(".skill-tag").forEach((tag, i) => {
+        gsap.from(tag, {
+            scrollTrigger: {
+                trigger: "#skills",
+                start: "top 85%",
+                toggleActions: "play reverse play reverse"
+            },
+            y: 20,
+            opacity: 0,
+            duration: 0.5,
+            ease: "back.out(1.7)",
+            delay: (i % 10) * 0.05
+        });
+    });
+
+    /* LEARNING ROWS */
+    gsap.utils.toArray(".learning-row").forEach((row, i) => {
+        gsap.from(row, {
+            scrollTrigger: {
+                trigger: row,
+                start: "top 90%",
+                toggleActions: "play reverse play reverse"
+            },
+            y: 20,
+            opacity: 0,
+            duration: 0.6,
+            ease: "power2.out"
+        });
+    });
+
+
+
+    /* GALLERY */
+
+    gsap.utils.toArray(
+        ".gallery-item, .behance-card"
+    ).forEach(
+        item => {
+
+            gsap.from(
+                item,
+                {
+
+                    scrollTrigger: {
+
+                        trigger:
+                            item,
+
+                        start: "top 92%",
+                        toggleActions: "play reverse play reverse"
+
+                    },
+
+                    y:
+                        30,
+
+                    opacity:
+                        0,
+
+                    duration:
+                        0.6,
+
+                    ease:
+                        "power2.out"
+
+                }
+            );
+
+        }
+    );
+
+    
+
+    /* MAGNETIC BUTTONS */
+    if (window.matchMedia("(pointer: fine)").matches) {
+        const magneticElements = document.querySelectorAll('.btn-primary, .btn-secondary, #mobile-menu-btn, #close-menu-btn');
+        magneticElements.forEach(el => {
+            el.addEventListener('mousemove', (e) => {
+                const rect = el.getBoundingClientRect();
+                const h = rect.width / 2;
+                const w = rect.height / 2;
+                const x = e.clientX - rect.left - h;
+                const y = e.clientY - rect.top - w;
+                
+                gsap.to(el, {
+                    x: x * 0.3,
+                    y: y * 0.3,
+                    duration: 0.4,
+                    ease: "power3.out"
+                });
+            });
+            
+            el.addEventListener('mouseleave', () => {
+                gsap.to(el, {
+                    x: 0,
+                    y: 0,
+                    duration: 0.7,
+                    ease: "elastic.out(1, 0.3)"
+                });
+            });
+        });
+    }
+
+    /* PROJECT PARALLAX HOVER */
+    if (window.matchMedia("(pointer: fine)").matches) {
+        const projects = document.querySelectorAll('.project-image');
+        projects.forEach(project => {
+            const img = project.querySelector('img');
+            project.addEventListener('mousemove', (e) => {
+                const rect = project.getBoundingClientRect();
+                const x = (e.clientX - rect.left) / rect.width - 0.5;
+                const y = (e.clientY - rect.top) / rect.height - 0.5;
+                
+                gsap.to(img, {
+                    x: x * 20,
+                    y: y * 20,
+                    scale: 1.05,
+                    duration: 0.4,
+                    ease: "power2.out"
+                });
+            });
+            
+            project.addEventListener('mouseleave', () => {
+                gsap.to(img, {
+                    x: 0,
+                    y: 0,
+                    scale: 1,
+                    duration: 0.7,
+                    ease: "power3.out"
+                });
+            });
+        });
+    }
+
+    /* SCROLL SPY NAVIGATION */
+    const sections = document.querySelectorAll("section");
+    const navLinks = document.querySelectorAll(".nav-link");
+
+    window.addEventListener("scroll", () => {
+        let current = "";
+        sections.forEach((section) => {
+            const sectionTop = section.offsetTop;
+            const sectionHeight = section.clientHeight;
+            if (pageYOffset >= sectionTop - sectionHeight / 3) {
+                current = section.getAttribute("id");
+            }
+        });
+
+        navLinks.forEach((link) => {
+            link.classList.remove("active");
+            if (link.getAttribute("href").includes(current)) {
+                link.classList.add("active");
+            }
+        });
+    });
+
+</script>
+
+
+<!-- CUSTOM CURSOR -->
+<div class="custom-cursor"></div>
+<div class="custom-cursor-follower"></div>
+
+<style>
+    /* CUSTOM CURSOR STYLES */
+    @media (pointer: fine) {
+        body, a, button, input, textarea, select {
+            cursor: none;
+        }
+
+        .custom-cursor {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 8px;
+            height: 8px;
+            background-color: var(--accent);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9999;
+            transform: translate(-50%, -50%);
+            transition: transform 0.1s ease;
+        }
+
+        .custom-cursor-follower {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 32px;
+            height: 32px;
+            border: 1px solid var(--accent);
+            background-color: rgba(161, 126, 79, 0.1);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9998;
+            transform: translate(-50%, -50%);
+            transition: transform 0.3s ease, width 0.3s ease, height 0.3s ease, background-color 0.3s ease;
+        }
+
+        .custom-cursor.hover {
+            transform: translate(-50%, -50%) scale(0);
+        }
+
+        .custom-cursor-follower.hover {
+            width: 48px;
+            height: 48px;
+            background-color: rgba(161, 126, 79, 0.2);
+        }
+    }
+    @media (pointer: coarse) {
+        .custom-cursor, .custom-cursor-follower {
+            display: none;
+        }
+    }
+</style>
+
+<script>
+    /* CUSTOM CURSOR JS */
+    if (window.matchMedia("(pointer: fine)").matches) {
+        const cursor = document.querySelector('.custom-cursor');
+        const follower = document.querySelector('.custom-cursor-follower');
+        const cursorImage = document.getElementById('cursor-image');
+        
+        let mouseX = window.innerWidth / 2, mouseY = window.innerHeight / 2;
+        let followerX = mouseX, followerY = mouseY;
+        let imageX = mouseX, imageY = mouseY;
+
+        document.addEventListener('mousemove', (e) => {
+            mouseX = e.clientX;
+            mouseY = e.clientY;
+            
+            cursor.style.left = mouseX + 'px';
+            cursor.style.top = mouseY + 'px';
+        });
+
+        gsap.ticker.add(() => {
+            followerX += (mouseX - followerX) * 0.15;
+            followerY += (mouseY - followerY) * 0.15;
+            follower.style.left = followerX + 'px';
+            follower.style.top = followerY + 'px';
+
+            if (cursorImage.style.opacity === '1') {
+                imageX += (mouseX - imageX) * 0.12;
+                imageY += (mouseY - imageY) * 0.12;
+                cursorImage.style.left = imageX + 'px';
+                cursorImage.style.top = imageY + 'px';
+            }
+        });
+
+        const interactiveElements = document.querySelectorAll('a, button, input, textarea, select, .project, .behance-card');
+        interactiveElements.forEach(el => {
+            // Skip learning rows here so they don't double trigger
+            if(el.classList.contains('learning-row')) return;
+            
+            el.addEventListener('mouseenter', () => {
+                cursor.classList.add('hover');
+                follower.classList.add('hover');
+            });
+            el.addEventListener('mouseleave', () => {
+                cursor.classList.remove('hover');
+                follower.classList.remove('hover');
+            });
+        });
+
+        const learningRows = document.querySelectorAll('.learning-row');
+        learningRows.forEach(row => {
+            row.addEventListener('mouseenter', () => {
+                const img = row.getAttribute('data-image');
+                cursorImage.style.backgroundImage = `url('${img}')`;
+                cursorImage.style.opacity = '1';
+                cursorImage.style.transform = 'translate(-50%, -50%) scale(1) rotate(2deg)';
+                cursor.classList.add('hover');
+                follower.classList.add('hover');
+                
+                // Snap image to cursor immediately on enter
+                imageX = mouseX;
+                imageY = mouseY;
+            });
+            row.addEventListener('mouseleave', () => {
+                cursorImage.style.opacity = '0';
+                cursorImage.style.transform = 'translate(-50%, -50%) scale(0.8) rotate(0deg)';
+                cursor.classList.remove('hover');
+                follower.classList.remove('hover');
+            });
+        });
+    }
+    /* COPY EMAIL */
+    const emailBtn = document.querySelector('.copy-email-btn');
+    if (emailBtn) {
+        emailBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            navigator.clipboard.writeText("shivurai138@gmail.com");
+            const textEl = emailBtn.querySelector('.email-text');
+            const iconEl = emailBtn.querySelector('.email-icon');
+            
+            const originalText = textEl.innerText;
+            const originalIcon = iconEl.className;
+            
+            textEl.innerText = "Copied!";
+            iconEl.className = "fas fa-check email-icon ml-2";
+            
+            gsap.fromTo(emailBtn, { scale: 0.9 }, { scale: 1, duration: 0.4, ease: "back.out(2)" });
+            
+            setTimeout(() => {
+                textEl.innerText = originalText;
+                iconEl.className = originalIcon;
+            }, 2000);
+        });
+    }
+
+</script>
+
+</body>
+</html>
