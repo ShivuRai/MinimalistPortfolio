@@ -53,25 +53,32 @@
 
         :root {
 
-            --bg: #F3F0EA;
+            --bg: #F4F1EC;
 
-            --surface: rgba(255, 255, 255, 0.55);
+            --surface: rgba(255, 255, 255, 0.58);
 
             --surface-strong: #FFFFFF;
 
             --text: #1C1B19;
 
-            --muted: #5C554D;
+            --muted: #5E574E;
 
-            --border: rgba(80, 70, 55, 0.16);
+            --border: rgba(75, 65, 52, 0.14);
 
-            --border-light: rgba(255, 255, 255, 0.6);
+            --border-light: rgba(255, 255, 255, 0.65);
 
-            --accent: #A17E4F;
+            /* Chromatic Glass Spectrum (Warm Gold, Rose Coral, Violet Lavender, Sky Cyan) */
+            --chroma-gold: #FFAF4B;
+            --chroma-rose: #FF7891;
+            --chroma-violet: #AA7DFF;
+            --chroma-cyan: #46C3FA;
 
-            --accent-dark: #745832;
+            /* Warm Terracotta & Sunset Accents */
+            --accent: #C87548;
 
-            --accent-soft: #E8DDCD;
+            --accent-dark: #9E522C;
+
+            --accent-soft: rgba(255, 175, 75, 0.14);
 
             --dark: #1C1B19;
 
@@ -83,15 +90,19 @@
 
             --radius-lg: 32px;
 
+            --gradient-chroma: linear-gradient(135deg, #FFAF4B 0%, #FF7891 35%, #AA7DFF 70%, #46C3FA 100%);
+
             --shadow-soft:
-                0 10px 30px
-                rgba(28, 27, 25, 0.06);
+                0 12px 35px
+                rgba(28, 27, 25, 0.05);
 
             --shadow-hover:
                 0 25px 60px
-                rgba(28, 27, 25, 0.14);
+                rgba(28, 27, 25, 0.12),
+                0 0 35px rgba(255, 175, 75, 0.12);
 
         }
+
 
 
         /* =====================================================
@@ -170,7 +181,7 @@
         ::selection {
 
             background:
-                var(--accent);
+                #AA7DFF;
 
             color:
                 white;
@@ -200,7 +211,7 @@
         ::-webkit-scrollbar-thumb {
 
             background:
-                #B9A78D;
+                linear-gradient(180deg, rgba(255, 175, 75, 0.45), rgba(255, 120, 145, 0.4), rgba(170, 125, 255, 0.45));
 
             border-radius:
                 20px;
@@ -211,13 +222,13 @@
         ::-webkit-scrollbar-thumb:hover {
 
             background:
-                var(--accent);
+                linear-gradient(180deg, #FFAF4B, #FF7891, #AA7DFF);
 
         }
 
 
         /* =====================================================
-           BACKGROUND EFFECTS
+           BACKGROUND EFFECTS: 4-POINT CHROMATIC AMBIENT MESH
         ===================================================== */
 
         .ambient {
@@ -225,20 +236,8 @@
             position:
                 fixed;
 
-            width:
-                500px;
-
-            height:
-                500px;
-
             border-radius:
                 50%;
-
-            filter:
-                blur(120px);
-
-            opacity:
-                0.16;
 
             pointer-events:
                 none;
@@ -246,33 +245,129 @@
             z-index:
                 -1;
 
+            will-change:
+                transform;
+
         }
 
 
-        .ambient-one {
+        .ambient-gold {
 
             top:
-                -150px;
+                -120px;
 
             left:
-                -150px;
+                -120px;
+
+            width:
+                620px;
+
+            height:
+                620px;
 
             background:
-                var(--accent);
+                radial-gradient(circle, rgba(255, 175, 75, 0.22) 0%, rgba(255, 175, 75, 0) 70%);
+
+            filter:
+                blur(90px);
+
+            animation:
+                ambientFloat 22s ease-in-out infinite alternate;
 
         }
 
 
-        .ambient-two {
+        .ambient-rose {
 
             right:
-                -200px;
+                -150px;
 
             top:
-                40%;
+                22%;
+
+            width:
+                560px;
+
+            height:
+                560px;
 
             background:
-                #C7B49B;
+                radial-gradient(circle, rgba(255, 120, 145, 0.18) 0%, rgba(255, 120, 145, 0) 70%);
+
+            filter:
+                blur(100px);
+
+            animation:
+                ambientFloat 26s ease-in-out infinite alternate-reverse;
+
+        }
+
+
+        .ambient-violet {
+
+            left:
+                -180px;
+
+            top:
+                52%;
+
+            width:
+                640px;
+
+            height:
+                640px;
+
+            background:
+                radial-gradient(circle, rgba(170, 125, 255, 0.17) 0%, rgba(170, 125, 255, 0) 70%);
+
+            filter:
+                blur(110px);
+
+            animation:
+                ambientFloat 28s ease-in-out infinite alternate;
+
+        }
+
+
+        .ambient-cyan {
+
+            right:
+                -140px;
+
+            top:
+                78%;
+
+            width:
+                580px;
+
+            height:
+                580px;
+
+            background:
+                radial-gradient(circle, rgba(70, 195, 250, 0.16) 0%, rgba(70, 195, 250, 0) 70%);
+
+            filter:
+                blur(95px);
+
+            animation:
+                ambientFloat 24s ease-in-out infinite alternate-reverse;
+
+        }
+
+
+        @keyframes ambientFloat {
+
+            0% {
+                transform: translate(0, 0) scale(1);
+            }
+
+            50% {
+                transform: translate(35px, -25px) scale(1.05);
+            }
+
+            100% {
+                transform: translate(-25px, 30px) scale(0.97);
+            }
 
         }
 
@@ -284,7 +379,7 @@
         .glass {
 
             background:
-                rgba(255, 255, 255, 0.42);
+                rgba(255, 255, 255, 0.48);
 
             backdrop-filter:
                 blur(18px);
@@ -294,11 +389,78 @@
 
             border:
                 1px solid
-                rgba(255, 255, 255, 0.55);
+                rgba(255, 255, 255, 0.65);
 
             box-shadow:
                 var(--shadow-soft);
 
+        }
+
+        /* =====================================================
+           GLASSMORPHIC SUNLIGHT TILT & CHROMATIC GLOW
+        ===================================================== */
+        .interactive-glass {
+            position: relative;
+            overflow: hidden;
+            transform-style: preserve-3d;
+            perspective: 1000px;
+            will-change: transform;
+            transition: border-color 0.4s ease, box-shadow 0.4s ease, background 0.4s ease;
+        }
+
+        /* 1. Behind-The-Glass Colorful Dynamic Radiant Gradient (Tracks Mouse) */
+        .interactive-glass::before {
+            content: "";
+            position: absolute;
+            inset: -50px;
+            border-radius: inherit;
+            pointer-events: none;
+            z-index: 0;
+            background: radial-gradient(
+                350px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+                rgba(255, 175, 75, 0.48) 0%,      /* Warm sunlight gold */
+                rgba(255, 120, 145, 0.42) 24%,    /* Luminous rose coral */
+                rgba(170, 125, 255, 0.35) 48%,    /* Iridescent lavender */
+                rgba(70, 195, 250, 0.28) 70%,     /* Ethereal sky cyan */
+                transparent 85%
+            );
+            filter: blur(24px);
+            opacity: var(--glass-glow-opacity, 0);
+            transition: opacity 0.4s ease;
+        }
+
+        /* 2. Specular Sunlight Ray Reflection (Glides across glass as card tilts) */
+        .interactive-glass::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            border-radius: inherit;
+            pointer-events: none;
+            z-index: 1;
+            background: linear-gradient(
+                var(--sun-angle, 125deg),
+                transparent 15%,
+                rgba(255, 255, 255, 0.08) calc(var(--sun-pos, 50%) - 20%),
+                rgba(255, 255, 255, 0.42) calc(var(--sun-pos, 50%) - 6%),
+                rgba(255, 255, 255, 0.82) var(--sun-pos, 50%),
+                rgba(255, 255, 255, 0.28) calc(var(--sun-pos, 50%) + 8%),
+                transparent 78%
+            );
+            opacity: var(--glass-ray-opacity, 0);
+            transition: opacity 0.35s ease;
+        }
+
+        /* Ensure card contents stay on top of the glow and sun rays */
+        .interactive-glass > * {
+            position: relative;
+            z-index: 2;
+        }
+
+        .interactive-glass.is-hovered {
+            border-color: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 24px 55px -12px rgba(28, 27, 25, 0.12),
+                        0 0 35px rgba(255, 175, 75, 0.25),
+                        0 0 60px rgba(170, 125, 255, 0.14);
         }
 
 
@@ -341,14 +503,65 @@
                 "";
 
             width:
-                22px;
+                24px;
 
             height:
-                1px;
+                2px;
+
+            border-radius:
+                2px;
 
             background:
-                var(--accent);
+                linear-gradient(90deg, #FFAF4B, #FF7891, #AA7DFF);
 
+        }
+
+        .hero-italic-gradient {
+            background: linear-gradient(135deg, #C87548 0%, #E0637A 45%, #8B5CE8 95%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            display: inline-block;
+            padding-top: 0.12em;
+            padding-bottom: 0.38em;
+            padding-left: 0.06em;
+            padding-right: 0.32em;
+            margin-top: -0.12em;
+            margin-bottom: -0.38em;
+            margin-left: -0.06em;
+            margin-right: -0.32em;
+            line-height: normal;
+            vertical-align: baseline;
+            overflow: visible;
+            -webkit-box-decoration-break: clone;
+            box-decoration-break: clone;
+        }
+
+        .contact-italic-gradient {
+            background: linear-gradient(135deg, #FFAF4B 0%, #FF7891 40%, #AA7DFF 75%, #46C3FA 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            display: inline-block;
+            padding-top: 0.12em;
+            padding-bottom: 0.38em;
+            padding-left: 0.06em;
+            padding-right: 0.32em;
+            margin-top: -0.12em;
+            margin-bottom: -0.38em;
+            margin-left: -0.06em;
+            margin-right: -0.32em;
+            line-height: normal;
+            vertical-align: baseline;
+            overflow: visible;
+            -webkit-box-decoration-break: clone;
+            box-decoration-break: clone;
+        }
+
+        .chroma-dot {
+            background: linear-gradient(135deg, #FFAF4B, #FF7891);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
 
 
@@ -448,7 +661,7 @@
             width: 100%;
             height: 2px;
             border-radius: 2px;
-            background: var(--accent);
+            background: linear-gradient(90deg, #FFAF4B, #FF7891, #AA7DFF);
             transform: scaleX(0);
             transform-origin: right;
             transition: transform 0.3s ease;
@@ -498,16 +711,19 @@
 
             border:
                 1px solid
-                var(--dark);
+                rgba(255, 255, 255, 0.16);
 
             box-shadow:
                 0 10px 25px
                 rgba(28, 27, 25, 0.14);
 
+            position:
+                relative;
+
             transition:
                 transform 0.3s ease,
                 box-shadow 0.3s ease,
-                background 0.3s ease;
+                border-color 0.3s ease;
 
         }
 
@@ -517,12 +733,13 @@
             transform:
                 translateY(-3px);
 
-            background:
-                var(--accent-dark);
+            border-color:
+                rgba(255, 120, 145, 0.55);
 
             box-shadow:
                 0 18px 35px
-                rgba(28, 27, 25, 0.2);
+                rgba(28, 27, 25, 0.22),
+                0 0 25px rgba(255, 120, 145, 0.25);
 
         }
 
@@ -567,18 +784,19 @@
                 var(--text);
 
             background:
-                rgba(255,255,255,0.38);
+                rgba(255,255,255,0.48);
 
             backdrop-filter:
-                blur(10px);
+                blur(12px);
 
             border:
                 1px solid
-                rgba(255,255,255,0.65);
+                rgba(255,255,255,0.72);
 
             transition:
                 transform 0.3s ease,
                 background 0.3s ease,
+                border-color 0.3s ease,
                 box-shadow 0.3s ease;
 
         }
@@ -590,10 +808,14 @@
                 translateY(-3px);
 
             background:
-                rgba(255,255,255,0.85);
+                rgba(255,255,255,0.92);
+
+            border-color:
+                rgba(255, 175, 75, 0.5);
 
             box-shadow:
-                var(--shadow-soft);
+                var(--shadow-soft),
+                0 0 20px rgba(255, 175, 75, 0.15);
 
         }
 
@@ -701,20 +923,37 @@
         .hero-dot {
 
             width:
-                7px;
+                8px;
 
             height:
-                7px;
+                8px;
 
             border-radius:
                 50%;
 
             background:
-                var(--accent);
+                #FF7891;
 
             box-shadow:
-                0 0 0 5px
-                rgba(161,126,79,0.12);
+                0 0 0 4px rgba(255, 120, 145, 0.22),
+                0 0 14px rgba(255, 120, 145, 0.65);
+
+            animation:
+                heroDotPulse 2.4s infinite ease-in-out;
+
+        }
+
+        @keyframes heroDotPulse {
+
+            0%, 100% {
+                transform: scale(1);
+                box-shadow: 0 0 0 4px rgba(255, 120, 145, 0.22), 0 0 14px rgba(255, 120, 145, 0.65);
+            }
+
+            50% {
+                transform: scale(1.15);
+                box-shadow: 0 0 0 7px rgba(255, 175, 75, 0.32), 0 0 18px rgba(255, 175, 75, 0.85);
+            }
 
         }
 
@@ -786,16 +1025,23 @@
                 var(--radius-lg);
 
             background:
-                rgba(255,255,255,0.25);
+                rgba(255,255,255,0.40);
+
+            backdrop-filter:
+                blur(16px);
+
+            -webkit-backdrop-filter:
+                blur(16px);
 
             border:
                 1px solid
-                rgba(255,255,255,0.42);
+                rgba(255,255,255,0.60);
 
             transition:
                 transform 0.45s ease,
                 box-shadow 0.45s ease,
-                background 0.45s ease;
+                background 0.45s ease,
+                border-color 0.45s ease;
 
         }
 
@@ -806,7 +1052,10 @@
                 translateY(-8px);
 
             background:
-                rgba(255,255,255,0.48);
+                rgba(255,255,255,0.62);
+
+            border-color:
+                rgba(255,255,255,0.92);
 
             box-shadow:
                 var(--shadow-hover);
@@ -967,17 +1216,17 @@
                 inline-flex;
 
             padding:
-                7px 12px;
+                7px 14px;
 
             border-radius:
                 999px;
 
             background:
-                rgba(255,255,255,0.42);
+                rgba(255,255,255,0.52);
 
             border:
                 1px solid
-                rgba(255,255,255,0.65);
+                rgba(255,255,255,0.75);
 
             color:
                 var(--muted);
@@ -985,9 +1234,15 @@
             font-size:
                 0.72rem;
 
+            font-weight:
+                500;
+
             transition:
                 transform 0.25s ease,
-                background 0.25s ease;
+                background 0.25s ease,
+                border-color 0.25s ease,
+                color 0.25s ease,
+                box-shadow 0.25s ease;
 
         }
 
@@ -998,7 +1253,16 @@
                 translateY(-2px);
 
             background:
-                var(--accent-soft);
+                #FFFFFF;
+
+            border-color:
+                rgba(255, 120, 145, 0.45);
+
+            color:
+                var(--dark);
+
+            box-shadow:
+                0 4px 15px rgba(255, 120, 145, 0.16);
 
         }
 
@@ -1682,13 +1946,27 @@
         }
 
 
-        .contact-section::before {
-
-            content:
-                "";
+        .contact-ambient {
 
             position:
                 absolute;
+
+            border-radius:
+                50%;
+
+            pointer-events:
+                none;
+
+            filter:
+                blur(140px);
+
+            will-change:
+                transform;
+
+        }
+
+
+        .contact-ambient-one {
 
             width:
                 600px;
@@ -1696,26 +1974,40 @@
             height:
                 600px;
 
-            border-radius:
-                50%;
-
-            background:
-                var(--accent);
-
-            filter:
-                blur(160px);
-
-            opacity:
-                0.16;
-
             top:
-                -250px;
+                -160px;
 
             left:
-                50%;
+                15%;
 
-            transform:
-                translateX(-50%);
+            background:
+                radial-gradient(circle, rgba(255, 120, 145, 0.22) 0%, rgba(255, 120, 145, 0) 70%);
+
+            animation:
+                ambientFloat 20s ease-in-out infinite alternate;
+
+        }
+
+
+        .contact-ambient-two {
+
+            width:
+                600px;
+
+            height:
+                600px;
+
+            top:
+                -120px;
+
+            right:
+                15%;
+
+            background:
+                radial-gradient(circle, rgba(170, 125, 255, 0.20) 0%, rgba(170, 125, 255, 0) 70%);
+
+            animation:
+                ambientFloat 24s ease-in-out infinite alternate-reverse;
 
         }
 
@@ -1745,7 +2037,8 @@
 
             transition:
                 transform 0.3s ease,
-                background 0.3s ease;
+                background 0.3s ease,
+                box-shadow 0.3s ease;
 
         }
 
@@ -1757,6 +2050,10 @@
 
             background:
                 #FFFFFF;
+
+            box-shadow:
+                0 15px 35px rgba(0,0,0,0.35),
+                0 0 25px rgba(255, 175, 75, 0.28);
 
         }
 
@@ -1780,14 +2077,15 @@
 
             border:
                 1px solid
-                rgba(255,255,255,0.2);
+                rgba(255,255,255,0.22);
 
             color:
                 white;
 
             transition:
                 transform 0.3s ease,
-                border 0.3s ease,
+                border-color 0.3s ease,
+                box-shadow 0.3s ease,
                 color 0.3s ease;
 
         }
@@ -1799,10 +2097,13 @@
                 translateY(-4px);
 
             border-color:
-                var(--accent);
+                rgba(255, 120, 145, 0.7);
 
             color:
-                #D8BD92;
+                #FFD6DE;
+
+            box-shadow:
+                0 0 25px rgba(255, 120, 145, 0.25);
 
         }
 
@@ -1829,12 +2130,17 @@
 
             border:
                 1px solid
-                rgba(255,255,255,0.1);
+                rgba(255,255,255,0.12);
+
+            color:
+                rgba(255,255,255,0.7);
 
             transition:
                 transform 0.3s ease,
                 color 0.3s ease,
-                border 0.3s ease;
+                background 0.3s ease,
+                box-shadow 0.3s ease,
+                border-color 0.3s ease;
 
         }
 
@@ -1845,10 +2151,16 @@
                 translateY(-5px);
 
             color:
-                #D8BD92;
+                #FFFFFF;
 
             border-color:
-                var(--accent);
+                rgba(170, 125, 255, 0.65);
+
+            background:
+                rgba(170, 125, 255, 0.16);
+
+            box-shadow:
+                0 0 22px rgba(170, 125, 255, 0.3);
 
         }
 
@@ -2035,7 +2347,7 @@
         .experience-progress {
             width: 100%;
             height: 100%;
-            background: var(--accent);
+            background: linear-gradient(180deg, #FFAF4B 0%, #FF7891 38%, #AA7DFF 72%, #46C3FA 100%);
             transform-origin: top;
             transform: scaleY(0);
         }
@@ -2048,44 +2360,68 @@
             height: 12px;
             border-radius: 50%;
             background: var(--bg);
-            border: 2px solid var(--accent);
+            border: 2.5px solid #FF7891;
+            box-shadow: 0 0 10px rgba(255, 120, 145, 0.45);
             z-index: 10;
             transform: translateX(-50%);
         }
         @media (min-width: 768px) {
             .experience-dot { left: -24px; }
         }
-        /* =====================================================
-           CUSTOM SCROLLBAR
-        ===================================================== */
-        ::-webkit-scrollbar {
-            width: 10px;
-        }
-        ::-webkit-scrollbar-track {
-            background: var(--bg);
-        }
-        ::-webkit-scrollbar-thumb {
-            background: rgba(80, 70, 55, 0.2);
-            border-radius: 5px;
-        }
-        ::-webkit-scrollbar-thumb:hover {
-            background: rgba(80, 70, 55, 0.4);
-        }
         .skill-tag {
             padding: 8px 20px;
             border-radius: 100px;
-            border: 1px solid rgba(80,70,55,0.2);
+            border: 1px solid rgba(75, 65, 52, 0.14);
             font-size: 0.9rem;
             color: var(--dark);
             transition: all 0.3s ease;
-            background: rgba(255,255,255,0.7);
-            backdrop-filter: blur(4px);
+            background: rgba(255, 255, 255, 0.72);
+            backdrop-filter: blur(8px);
             cursor: default;
         }
         .skill-tag:hover {
-            background: var(--accent);
-            color: var(--bg);
-            border-color: var(--accent);
+            transform: translateY(-2px);
+            background: #FFFFFF;
+            border-color: rgba(255, 120, 145, 0.5);
+            box-shadow: 0 8px 22px rgba(28, 27, 25, 0.08), 0 0 16px rgba(255, 120, 145, 0.16);
+        }
+
+        /* =====================================================
+           ABOUT PROFILE CARD
+        ===================================================== */
+        .about-profile-card {
+            border: 1px solid rgba(255, 255, 255, 0.65);
+            box-shadow: var(--shadow-soft);
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+        }
+        .about-profile-card:hover {
+            transform: translateY(-6px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        /* =====================================================
+           FIGMA LAB & MODAL STYLES
+        ===================================================== */
+        body.modal-open {
+            overflow: hidden;
+        }
+        @media (pointer: fine) {
+            body.modal-open .custom-cursor,
+            body.modal-open .custom-cursor-follower {
+                display: none !important;
+            }
+            body.modal-open,
+            body.modal-open * {
+                cursor: auto !important;
+            }
+        }
+        .modal-card {
+            box-shadow: 0 35px 80px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(255, 255, 255, 0.1);
+        }
+        .modal-tab-btn.active {
+            background: linear-gradient(135deg, #FFAF4B, #FF7891) !important;
+            color: #FFFFFF !important;
+            box-shadow: 0 4px 14px rgba(255, 120, 145, 0.35);
         }
     </style>
 </head>
@@ -2119,11 +2455,15 @@
     </div>
 </div>
 
-<!-- BACKGROUND AMBIENCE -->
+<!-- BACKGROUND AMBIENCE: 4-POINT CHROMATIC MESH -->
 
-<div class="ambient ambient-one"></div>
+<div class="ambient ambient-gold"></div>
 
-<div class="ambient ambient-two"></div>
+<div class="ambient ambient-rose"></div>
+
+<div class="ambient ambient-violet"></div>
+
+<div class="ambient ambient-cyan"></div>
 
 
 
@@ -2138,7 +2478,7 @@
         <a href="#hero"
            class="font-serif text-2xl">
 
-            Shivam<span style="color: var(--accent);">.</span>
+            Shivam<span class="chroma-dot font-bold">.</span>
 
         </a>
 
@@ -2152,6 +2492,10 @@
             <a href="#experience" class="nav-link">Experience</a>
 
             <a href="#about" class="nav-link">About</a>
+
+            <a href="#figma-community" class="nav-link">Figma Lab</a>
+
+            <a href="#motion" class="nav-link">Motion</a>
 
         </div>
 
@@ -2236,6 +2580,22 @@
     </a>
 
 
+    <a href="#figma-community"
+       class="mobile-link text-5xl font-serif">
+
+        Figma Lab
+
+    </a>
+
+
+    <a href="#motion"
+       class="mobile-link text-5xl font-serif">
+
+        Motion
+
+    </a>
+
+
     <a
         href="#contact"
         class="mobile-link text-5xl font-serif"
@@ -2286,7 +2646,7 @@
 
             I turn complex digital experiences
 
-            <span class="italic font-light" style="color: var(--accent);">
+            <span class="italic font-light hero-italic-gradient">
 
                 into clarity.
 
@@ -2311,6 +2671,15 @@
                     Explore My Work
 
                     <i class="fas fa-arrow-down ml-1 text-xs"></i>
+
+                </a>
+
+
+                <a href="#figma-community" class="btn-secondary group">
+
+                    <i class="fab fa-figma text-[var(--accent)] group-hover:scale-110 transition-transform"></i>
+
+                    <span>Figma Prototypes</span>
 
                 </a>
 
@@ -2427,10 +2796,7 @@
 
             A selection of problems
 
-            <span
-                class="italic"
-                style="color: var(--accent);"
-            >
+            <span class="italic hero-italic-gradient">
 
                 worth solving.
 
@@ -2483,10 +2849,7 @@
 
                 Zomato Customer
 
-                <span
-                    class="italic"
-                    style="color: var(--accent);"
-                >
+                <span class="italic hero-italic-gradient">
 
                     Support Experience
 
@@ -2520,17 +2883,40 @@
             </div>
 
 
-            <a
-                href="https://www.behance.net/gallery/256777323/UX-Case-Study-Zomato-Customer-Support-Experience"
-                target="_blank"
-                class="btn-primary"
-            >
+            <div class="flex flex-wrap items-center gap-3">
 
-                View Project
+                <a
+                    href="https://www.behance.net/gallery/256777323/UX-Case-Study-Zomato-Customer-Support-Experience"
+                    target="_blank"
+                    class="btn-primary"
+                >
 
-                <i class="fas fa-arrow-up-right-from-square text-xs"></i>
+                    View Case Study
 
-            </a>
+                    <i class="fas fa-arrow-up-right-from-square text-xs"></i>
+
+                </a>
+
+
+                <button
+                    type="button"
+                    class="btn-secondary open-proto-modal-btn group"
+                    data-prototype="zomato"
+                    data-title="Zomato Customer Support Experience"
+                    data-badge="Mobile UX · Prototype"
+                    data-device="mobile"
+                    data-figma-url="https://www.figma.com/proto/0Yp2K18FFs6Djq4NEr5Pep/Zomato-Customer-Support-Experience-Design-Files?node-id=23-3&p=f&viewport=40%2C215%2C0.34&t=a0KFghUXnKLTMZiS-1&scaling=min-zoom&content-scaling=fixed&page-id=0%3A1"
+                >
+
+                    <i class="fab fa-figma text-[var(--accent)] group-hover:rotate-12 transition-transform"></i>
+
+                    <span>Play Prototype</span>
+
+                    <span class="text-[10px] font-semibold tracking-wider uppercase px-2 py-0.5 rounded-full bg-[var(--accent-soft)] text-[var(--accent-dark)]">Live</span>
+
+                </button>
+
+            </div>
 
         </div>
 
@@ -2554,10 +2940,7 @@
 
                 IRCTC Website
 
-                <span
-                    class="italic"
-                    style="color: var(--accent);"
-                >
+                <span class="italic hero-italic-gradient">
 
                     Redesign
 
@@ -2593,17 +2976,40 @@
             </div>
 
 
-            <a
-                href="https://www.behance.net/gallery/230112253/IRCTC-Website-Redesign-Case-Study"
-                target="_blank"
-                class="btn-primary"
-            >
+            <div class="flex flex-wrap items-center gap-3">
 
-                View Project
+                <a
+                    href="https://www.behance.net/gallery/230112253/IRCTC-Website-Redesign-Case-Study"
+                    target="_blank"
+                    class="btn-primary"
+                >
 
-                <i class="fas fa-arrow-up-right-from-square text-xs"></i>
+                    View Case Study
 
-            </a>
+                    <i class="fas fa-arrow-up-right-from-square text-xs"></i>
+
+                </a>
+
+
+                <button
+                    type="button"
+                    class="btn-secondary open-proto-modal-btn group"
+                    data-prototype="irctc"
+                    data-title="IRCTC Booking Platform Redesign"
+                    data-badge="Desktop Web · Prototype"
+                    data-device="desktop"
+                    data-figma-url="https://www.figma.com/proto/RhmiIl6S2sDL3PsatrJUqr/IRCTC-Re-Design?node-id=2020-824&viewport=-1496%2C949%2C0.42&t=ZTOcwyt6r2XghXRw-1&scaling=min-zoom&content-scaling=fixed&page-id=55%3A341"
+                >
+
+                    <i class="fab fa-figma text-[var(--accent)] group-hover:rotate-12 transition-transform"></i>
+
+                    <span>Play Prototype</span>
+
+                    <span class="text-[10px] font-semibold tracking-wider uppercase px-2 py-0.5 rounded-full bg-[var(--accent-soft)] text-[var(--accent-dark)]">Live</span>
+
+                </button>
+
+            </div>
 
         </div>
 
@@ -2666,19 +3072,19 @@
     <div class="max-w-6xl mx-auto px-6 py-32">
         <p class="section-label mb-6">How I Work</p>
         <h2 class="text-5xl md:text-7xl leading-[0.95] mb-24">
-            From uncertainty <span class="italic" style="color: var(--accent);">to clarity.</span>
+            From uncertainty <span class="italic hero-italic-gradient">to clarity.</span>
         </h2>
 
         <div class="relative mt-16">
             <!-- Timeline line -->
-            <div class="absolute top-6 left-6 right-6 h-[2px] bg-gray-200 hidden md:block">
-                <div class="process-line-progress h-full bg-[var(--accent)] w-0"></div>
+            <div class="absolute top-6 left-6 right-6 h-[2px] bg-[rgba(75,65,52,0.1)] hidden md:block">
+                <div class="process-line-progress h-full bg-gradient-to-r from-[#FFAF4B] via-[#FF7891] via-[#AA7DFF] to-[#46C3FA] w-0"></div>
             </div>
 
             <div class="grid md:grid-cols-4 gap-12 md:gap-6 relative">
-                <!-- Step 1 -->
-                <div class="process-step">
-                    <div class="w-12 h-12 rounded-full bg-[var(--accent)] text-white flex items-center justify-center font-serif text-xl relative mb-8 mx-auto md:mx-0 z-10 transition-transform hover:scale-110 shadow-lg">
+                <!-- Step 1: Solar Gold -->
+                <div class="process-step group">
+                    <div class="w-12 h-12 rounded-full bg-gradient-to-br from-[#FFAF4B] to-[#FF9326] text-white flex items-center justify-center font-serif text-xl relative mb-8 mx-auto md:mx-0 z-10 transition-transform group-hover:scale-110 shadow-[0_8px_22px_rgba(255,175,75,0.35)]">
                         1
                     </div>
                     <h3 class="text-2xl mb-4 text-center md:text-left">Understand</h3>
@@ -2687,9 +3093,9 @@
                     </p>
                 </div>
                 
-                <!-- Step 2 -->
-                <div class="process-step">
-                    <div class="w-12 h-12 rounded-full bg-[var(--accent)] text-white flex items-center justify-center font-serif text-xl relative mb-8 mx-auto md:mx-0 z-10 transition-transform hover:scale-110 shadow-lg">
+                <!-- Step 2: Rose Coral -->
+                <div class="process-step group">
+                    <div class="w-12 h-12 rounded-full bg-gradient-to-br from-[#FF7891] to-[#F0536E] text-white flex items-center justify-center font-serif text-xl relative mb-8 mx-auto md:mx-0 z-10 transition-transform group-hover:scale-110 shadow-[0_8px_22px_rgba(255,120,145,0.35)]">
                         2
                     </div>
                     <h3 class="text-2xl mb-4 text-center md:text-left">Structure</h3>
@@ -2698,9 +3104,9 @@
                     </p>
                 </div>
 
-                <!-- Step 3 -->
-                <div class="process-step">
-                    <div class="w-12 h-12 rounded-full bg-[var(--accent)] text-white flex items-center justify-center font-serif text-xl relative mb-8 mx-auto md:mx-0 z-10 transition-transform hover:scale-110 shadow-lg">
+                <!-- Step 3: Violet Lavender -->
+                <div class="process-step group">
+                    <div class="w-12 h-12 rounded-full bg-gradient-to-br from-[#AA7DFF] to-[#8C52FF] text-white flex items-center justify-center font-serif text-xl relative mb-8 mx-auto md:mx-0 z-10 transition-transform group-hover:scale-110 shadow-[0_8px_22px_rgba(170,125,255,0.35)]">
                         3
                     </div>
                     <h3 class="text-2xl mb-4 text-center md:text-left">Explore</h3>
@@ -2709,9 +3115,9 @@
                     </p>
                 </div>
 
-                <!-- Step 4 -->
-                <div class="process-step">
-                    <div class="w-12 h-12 rounded-full bg-[var(--accent)] text-white flex items-center justify-center font-serif text-xl relative mb-8 mx-auto md:mx-0 z-10 transition-transform hover:scale-110 shadow-lg">
+                <!-- Step 4: Sky Cyan -->
+                <div class="process-step group">
+                    <div class="w-12 h-12 rounded-full bg-gradient-to-br from-[#46C3FA] to-[#12A8EE] text-white flex items-center justify-center font-serif text-xl relative mb-8 mx-auto md:mx-0 z-10 transition-transform group-hover:scale-110 shadow-[0_8px_22px_rgba(70,195,250,0.35)]">
                         4
                     </div>
                     <h3 class="text-2xl mb-4 text-center md:text-left">Refine</h3>
@@ -2734,7 +3140,7 @@
     <div class="mb-16">
         <p class="section-label mb-6">Experience</p>
         <h2 class="text-5xl md:text-7xl leading-[0.95] mb-8">
-            The journey <span class="italic" style="color: var(--accent);">so far.</span>
+            The journey <span class="italic hero-italic-gradient">so far.</span>
         </h2>
         <p class="text-lg text-muted leading-relaxed max-w-2xl">
             My journey into UX started with technology and gradually shifted toward understanding how people experience digital products.
@@ -2744,7 +3150,7 @@
     <div class="grid md:grid-cols-3 gap-6">
         <!-- Main Bento Box (Current Role) -->
         <div class="experience-bento md:col-span-2 glass rounded-[2.5rem] p-10 relative overflow-hidden group hover:-translate-y-2 transition-transform duration-500">
-            <div class="absolute top-0 right-0 w-64 h-64 bg-[var(--accent)] rounded-full blur-[100px] opacity-10 group-hover:opacity-30 transition-opacity duration-700"></div>
+            <div class="absolute top-0 right-0 w-72 h-72 bg-gradient-to-br from-[#FFAF4B] to-[#FF7891] rounded-full blur-[100px] opacity-15 group-hover:opacity-35 transition-opacity duration-700 pointer-events-none"></div>
             <p class="section-label mb-5 relative z-10">June 2024 - Feb 2026</p>
             <h3 class="text-4xl md:text-5xl mb-4 relative z-10">Junior UX Designer</h3>
             <p class="text-muted text-xl mb-8 font-serif italic relative z-10">Wipro Limited</p>
@@ -2753,6 +3159,7 @@
 
         <!-- Secondary Bento Box (Freelance) -->
         <div class="experience-bento glass rounded-[2.5rem] p-10 relative overflow-hidden group hover:-translate-y-2 transition-transform duration-500">
+            <div class="absolute top-0 right-0 w-64 h-64 bg-gradient-to-br from-[#AA7DFF] to-[#46C3FA] rounded-full blur-[90px] opacity-15 group-hover:opacity-35 transition-opacity duration-700 pointer-events-none"></div>
             <p class="section-label mb-5 relative z-10">2023 — 2024</p>
             <h3 class="text-3xl mb-4 relative z-10">Freelance UI/UX</h3>
             <p class="text-muted mb-6 font-serif italic relative z-10">Independent</p>
@@ -2761,13 +3168,99 @@
 
         <!-- Tertiary Bento Box (Education) -->
         <div class="experience-bento md:col-span-3 glass rounded-[2rem] p-10 md:px-16 flex flex-col md:flex-row md:items-center justify-between group hover:-translate-y-1 transition-transform duration-500 relative overflow-hidden">
-            <div class="absolute bottom-0 left-0 w-full h-1/2 bg-gradient-to-t from-[var(--accent)] to-transparent opacity-0 group-hover:opacity-5 transition-opacity duration-700"></div>
+            <div class="absolute bottom-0 left-0 w-full h-1/2 bg-gradient-to-t from-[rgba(170,125,255,0.12)] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none"></div>
             <div class="relative z-10 mb-6 md:mb-0">
                 <p class="section-label mb-3">2020 — 2023</p>
                 <h3 class="text-3xl">Bachelor of Computer Applications</h3>
             </div>
             <div class="relative z-10 md:text-right">
                 <p class="text-xl font-serif italic text-muted">Graphic Era University</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+<!-- =====================================================
+     ABOUT
+===================================================== -->
+<section id="about" class="max-w-6xl mx-auto px-6 py-32 border-t border-gray-200">
+    <div class="max-w-3xl mb-16">
+        <p class="section-label mb-6">About Me</p>
+        <h2 class="text-5xl md:text-7xl leading-[0.95] mb-8">
+            Designing with empathy, <span class="italic hero-italic-gradient">driven by systems.</span>
+        </h2>
+        <p class="text-lg text-muted leading-relaxed">
+            I believe meaningful digital products are built at the intersection of human psychology, structured logic, and meticulous craft.
+        </p>
+    </div>
+
+    <div class="grid lg:grid-cols-12 gap-8 items-stretch">
+        <!-- Profile Bento Column -->
+        <div class="lg:col-span-5 glass rounded-[2.5rem] p-8 md:p-10 relative overflow-hidden about-profile-card flex flex-col justify-between">
+            <div>
+                <div class="relative w-full aspect-square rounded-[2rem] overflow-hidden mb-8 bg-[#E7E1D8] shadow-md border border-[rgba(255,255,255,0.7)] group">
+                    <img
+                        src="images/Profile pic.png"
+                        alt="Shivam Rai"
+                        class="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-700"
+                    >
+                    <div class="absolute bottom-4 left-4 right-4 glass py-2.5 px-4 rounded-full flex items-center justify-between text-xs backdrop-blur-md">
+                        <span class="font-medium text-[var(--dark)] flex items-center gap-2">
+                            <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+                            Available for Opportunities
+                        </span>
+                        <span class="text-muted font-serif italic">India</span>
+                    </div>
+                </div>
+
+                <h3 class="text-3xl font-serif mb-2">Shivam Rai</h3>
+                <p class="text-muted text-sm font-medium mb-6">UX Designer · BCA Graduate · Enterprise & Product Focus</p>
+            </div>
+
+            <div class="space-y-3 pt-4 border-t border-[rgba(80,70,55,0.12)]">
+                <div class="flex items-center justify-between text-sm">
+                    <span class="text-muted">Core Discipline</span>
+                    <span class="font-medium">UX / Interaction Design</span>
+                </div>
+                <div class="flex items-center justify-between text-sm">
+                    <span class="text-muted">Primary Tools</span>
+                    <span class="font-medium">Figma, FigJam, Illustrator</span>
+                </div>
+                <div class="flex items-center justify-between text-sm">
+                    <span class="text-muted">Figma Community</span>
+                    <a href="https://www.figma.com/@RaiShivu" target="_blank" class="font-medium text-[var(--accent)] hover:underline flex items-center gap-1">
+                        @RaiShivu <i class="fas fa-arrow-up-right-from-square text-xs"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- 3 Pillars Column using .about-card & .about-number -->
+        <div class="lg:col-span-7 flex flex-col justify-between gap-4">
+            <div class="about-card glass !p-5 md:!p-5 flex-1 flex flex-col justify-center">
+                <div class="about-number !mb-1.5 !bg-[rgba(255,175,75,0.18)] !text-[#B56810] !border !border-[rgba(255,175,75,0.35)]">01</div>
+                <h3 class="text-xl md:text-2xl mb-1 font-serif">Code & Design Harmony</h3>
+                <p class="text-muted text-sm leading-relaxed">
+                    BCA foundation and Wipro enterprise background combining technical feasibility with user empathy.
+                </p>
+            </div>
+
+            <div class="about-card glass !p-5 md:!p-5 flex-1 flex flex-col justify-center">
+                <div class="about-number !mb-1.5 !bg-[rgba(255,120,145,0.18)] !text-[#BF2D4E] !border !border-[rgba(255,120,145,0.35)]">02</div>
+                <h3 class="text-xl md:text-2xl mb-1 font-serif">Systems Over Artboards</h3>
+                <p class="text-muted text-sm leading-relaxed">
+                    Scalable Figma token systems and modular components that maintain visual harmony and adapt effortlessly.
+                </p>
+            </div>
+
+            <div class="about-card glass !p-5 md:!p-5 flex-1 flex flex-col justify-center">
+                <div class="about-number !mb-1.5 !bg-[rgba(170,125,255,0.18)] !text-[#6F36D4] !border !border-[rgba(170,125,255,0.35)]">03</div>
+                <h3 class="text-xl md:text-2xl mb-1 font-serif">Prototypes as Truth</h3>
+                <p class="text-muted text-sm leading-relaxed">
+                    Clickable, high-fidelity prototypes to test user flows, edge cases, and ensure seamless developer handoff.
+                </p>
             </div>
         </div>
     </div>
@@ -2786,7 +3279,7 @@
             <div class="md:col-span-5">
                 <p class="section-label mb-6">Skills & Tools</p>
                 <h2 class="text-5xl md:text-7xl leading-[0.95] mb-8">
-                    What I <span class="italic" style="color: var(--accent);">bring.</span>
+                    What I <span class="italic hero-italic-gradient">bring.</span>
                 </h2>
                 <p class="text-lg text-muted leading-relaxed">
                     A mix of UX thinking, visual design and technical understanding that helps me move from an early problem to a considered digital experience.
@@ -2798,37 +3291,46 @@
                 
                 <!-- Category 1 -->
                 <div>
-                    <h3 class="text-sm uppercase tracking-widest text-muted mb-4 font-semibold">UX Thinking</h3>
+                    <h3 class="text-sm uppercase tracking-widest text-[#B56810] mb-4 font-semibold flex items-center gap-2">
+                        <span class="w-1.5 h-1.5 rounded-full bg-[#FFAF4B]"></span>
+                        UX Thinking
+                    </h3>
                     <div class="flex flex-wrap gap-3">
-                        <span class="skill-tag">User Flows</span>
-                        <span class="skill-tag">Information Architecture</span>
-                        <span class="skill-tag">Wireframing</span>
-                        <span class="skill-tag">Problem Framing</span>
-                        <span class="skill-tag">User-Centered Design</span>
+                        <span class="skill-tag skill-tag-ux">User Flows</span>
+                        <span class="skill-tag skill-tag-ux">Information Architecture</span>
+                        <span class="skill-tag skill-tag-ux">Wireframing</span>
+                        <span class="skill-tag skill-tag-ux">Problem Framing</span>
+                        <span class="skill-tag skill-tag-ux">User-Centered Design</span>
                     </div>
                 </div>
 
                 <!-- Category 2 -->
                 <div>
-                    <h3 class="text-sm uppercase tracking-widest text-muted mb-4 font-semibold">Interface Design</h3>
+                    <h3 class="text-sm uppercase tracking-widest text-[#BF2D4E] mb-4 font-semibold flex items-center gap-2">
+                        <span class="w-1.5 h-1.5 rounded-full bg-[#FF7891]"></span>
+                        Interface Design
+                    </h3>
                     <div class="flex flex-wrap gap-3">
-                        <span class="skill-tag">Visual Hierarchy</span>
-                        <span class="skill-tag">Responsive Design</span>
-                        <span class="skill-tag">Interaction Design</span>
-                        <span class="skill-tag">Design Systems</span>
-                        <span class="skill-tag">Prototyping</span>
+                        <span class="skill-tag skill-tag-ui">Visual Hierarchy</span>
+                        <span class="skill-tag skill-tag-ui">Responsive Design</span>
+                        <span class="skill-tag skill-tag-ui">Interaction Design</span>
+                        <span class="skill-tag skill-tag-ui">Design Systems</span>
+                        <span class="skill-tag skill-tag-ui">Prototyping</span>
                     </div>
                 </div>
 
                 <!-- Category 3 -->
                 <div>
-                    <h3 class="text-sm uppercase tracking-widest text-muted mb-4 font-semibold">Tools & Collaboration</h3>
+                    <h3 class="text-sm uppercase tracking-widest text-[#0B7CAE] mb-4 font-semibold flex items-center gap-2">
+                        <span class="w-1.5 h-1.5 rounded-full bg-[#46C3FA]"></span>
+                        Tools & Collaboration
+                    </h3>
                     <div class="flex flex-wrap gap-3">
-                        <span class="skill-tag">Figma</span>
-                        <span class="skill-tag">Adobe Illustrator</span>
-                        <span class="skill-tag">HTML/CSS/JS</span>
-                        <span class="skill-tag">Developer Handoff</span>
-                        <span class="skill-tag">Stakeholder Communication</span>
+                        <span class="skill-tag skill-tag-tools">Figma</span>
+                        <span class="skill-tag skill-tag-tools">Adobe Illustrator</span>
+                        <span class="skill-tag skill-tag-tools">HTML/CSS/JS</span>
+                        <span class="skill-tag skill-tag-tools">Developer Handoff</span>
+                        <span class="skill-tag skill-tag-tools">Stakeholder Communication</span>
                     </div>
                 </div>
                 
@@ -2840,8 +3342,207 @@
 
 
 <!-- =====================================================
-     LEARNING
+     FIGMA LAB & COMMUNITY BENTO
 ===================================================== -->
+<section id="figma-community" class="max-w-6xl mx-auto px-6 py-32 border-t border-gray-200">
+    <div class="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-8">
+        <div>
+            <p class="section-label mb-6">
+                <i class="fab fa-figma mr-1 text-[var(--accent)]"></i> Figma Community · @RaiShivu
+            </p>
+            <h2 class="text-5xl md:text-7xl leading-[0.95]">
+                Where ideas become <span class="italic hero-italic-gradient">playable.</span>
+            </h2>
+        </div>
+        <div class="max-w-md">
+            <p class="text-lg text-muted leading-relaxed">
+                Explore interactive prototypes, design systems, and auto-layout experiments published on my Figma Community profile.
+            </p>
+        </div>
+    </div>
+
+    <!-- Bento Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-12 gap-6">
+        
+        <!-- CARD 1: Hero Community Hub (col-span-12 lg:col-span-8) -->
+        <div class="md:col-span-12 lg:col-span-8 glass rounded-[2.5rem] p-8 md:p-12 relative overflow-hidden group hover:-translate-y-1.5 transition-all duration-500 flex flex-col justify-between">
+            <div class="absolute -top-16 -right-16 w-80 h-80 bg-gradient-to-br from-[#FFAF4B] to-[#FF7891] rounded-full blur-[110px] opacity-15 group-hover:opacity-30 transition-opacity duration-700 pointer-events-none"></div>
+
+            <div class="relative z-10">
+                <div class="flex flex-wrap items-center justify-between gap-4 mb-8">
+                    <div class="inline-flex items-center gap-3 px-4 py-2 rounded-full glass bg-white/70 border border-white/80">
+                        <i class="fab fa-figma text-lg text-[var(--accent)]"></i>
+                        <span class="text-xs font-semibold uppercase tracking-wider text-[var(--dark)]">Figma Community Creator</span>
+                        <span class="w-1.5 h-1.5 rounded-full bg-[var(--accent)]"></span>
+                        <span class="text-xs text-muted font-medium">@RaiShivu</span>
+                    </div>
+
+                    <a href="https://www.figma.com/@RaiShivu" target="_blank" class="inline-flex items-center gap-2 text-xs font-semibold tracking-wider uppercase text-[var(--accent)] hover:text-[var(--accent-dark)] transition-colors">
+                        Visit Community Profile
+                        <i class="fas fa-arrow-up-right-from-square"></i>
+                    </a>
+                </div>
+
+                <h3 class="text-3xl md:text-5xl leading-[1.08] mb-6 max-w-2xl font-serif">
+                    Interactive prototypes, design systems & open-source UI files.
+                </h3>
+                <p class="text-muted text-base md:text-lg leading-relaxed max-w-xl mb-8">
+                    Every design here goes beyond flat artboards. Created with responsive auto-layout 5.0, variables, micro-animations, and modular component sets that you can test live or duplicate.
+                </p>
+            </div>
+
+            <div class="relative z-10 pt-6 border-t border-[rgba(80,70,55,0.12)] flex flex-wrap items-center justify-between gap-4">
+                <div class="flex flex-wrap gap-2 text-xs">
+                    <span class="tag">Smart Animate</span>
+                    <span class="tag">Design Tokens</span>
+                    <span class="tag">Interactive Components</span>
+                    <span class="tag">Auto-Layout</span>
+                </div>
+
+                <a href="https://www.figma.com/@RaiShivu" target="_blank" class="btn-primary text-sm py-3 px-6">
+                    <i class="fab fa-figma"></i>
+                    <span>Explore Profile @RaiShivu</span>
+                    <i class="fas fa-arrow-right text-xs"></i>
+                </a>
+            </div>
+        </div>
+
+        <!-- CARD 2: Prototyping Standard (col-span-12 lg:col-span-4) -->
+        <div class="md:col-span-12 lg:col-span-4 glass rounded-[2.5rem] p-8 md:p-10 flex flex-col justify-between group hover:-translate-y-1.5 transition-all duration-500 relative overflow-hidden bg-gradient-to-br from-white/70 to-white/40">
+            <div class="absolute bottom-0 right-0 w-48 h-48 bg-[#A17E4F] rounded-full blur-[80px] opacity-10"></div>
+            
+            <div>
+                <p class="section-label mb-4">Prototyping Standard</p>
+                <h4 class="text-2xl font-serif mb-4">Crafted for realistic user feel</h4>
+                <p class="text-muted text-sm leading-relaxed mb-6">
+                    Prototypes include custom ease curves, tactile tap states, dynamic keyboard popups, and conversational bot states.
+                </p>
+            </div>
+
+            <div class="space-y-4 my-2">
+                <div class="p-4 rounded-2xl bg-white/60 border border-white/80 flex items-center justify-between">
+                    <span class="text-sm font-medium">Auto-Layout Architecture</span>
+                    <span class="text-xs px-2.5 py-1 rounded-full bg-[var(--accent-soft)] text-[var(--accent-dark)] font-semibold">100% Responsive</span>
+                </div>
+                <div class="p-4 rounded-2xl bg-white/60 border border-white/80 flex items-center justify-between">
+                    <span class="text-sm font-medium">Interactive Variants</span>
+                    <span class="text-xs px-2.5 py-1 rounded-full bg-[var(--accent-soft)] text-[var(--accent-dark)] font-semibold">Hover & Active</span>
+                </div>
+                <div class="p-4 rounded-2xl bg-white/60 border border-white/80 flex items-center justify-between">
+                    <span class="text-sm font-medium">Design Tokens</span>
+                    <span class="text-xs px-2.5 py-1 rounded-full bg-[var(--accent-soft)] text-[var(--accent-dark)] font-semibold">Figma Variables</span>
+                </div>
+            </div>
+
+            <button type="button" class="btn-secondary w-full justify-center open-proto-modal-btn mt-4" data-prototype="zomato" data-title="Zomato Customer Support Flow" data-badge="Interactive Mobile Prototype" data-device="mobile">
+                <i class="fas fa-play text-xs text-[var(--accent)]"></i>
+                <span>Launch Prototype Player</span>
+            </button>
+        </div>
+
+        <!-- CARD 3: Prototype Feature 1 - Zomato (col-span-12 md:col-span-6 lg:col-span-4) -->
+        <div class="md:col-span-6 lg:col-span-4 glass rounded-[2.2rem] p-6 md:p-8 flex flex-col justify-between group hover:-translate-y-1.5 transition-all duration-500">
+            <div>
+                <div class="relative w-full h-52 rounded-2xl overflow-hidden mb-6 bg-[#E7E1D8] border border-white/70 shadow-sm">
+                    <img src="images/Project New.png" alt="Zomato Prototype" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent flex items-end p-4">
+                        <span class="text-xs text-white bg-black/50 backdrop-blur-md px-3 py-1 rounded-full border border-white/20">
+                            Mobile Flow · Smart Animate
+                        </span>
+                    </div>
+                </div>
+
+                <div class="flex items-center justify-between mb-3">
+                    <span class="text-xs font-semibold text-[var(--accent)] uppercase tracking-wider">Prototype 01</span>
+                    <span class="text-xs text-muted">Zomato Support</span>
+                </div>
+                <h4 class="text-2xl font-serif mb-2">Conversational Issue Resolution</h4>
+                <p class="text-muted text-sm leading-relaxed mb-6">
+                    Interactive chat states, multi-option decision trees, and escalation workflows tested with users.
+                </p>
+            </div>
+
+            <div class="flex items-center gap-3 pt-4 border-t border-[rgba(80,70,55,0.12)]">
+                <button type="button" class="btn-primary text-xs py-3 px-4 flex-1 justify-center open-proto-modal-btn" data-prototype="zomato" data-title="Zomato Customer Support Experience" data-badge="Mobile Flow Prototype" data-device="mobile" data-figma-url="https://www.figma.com/proto/0Yp2K18FFs6Djq4NEr5Pep/Zomato-Customer-Support-Experience-Design-Files?node-id=23-3&p=f&viewport=40%2C215%2C0.34&t=a0KFghUXnKLTMZiS-1&scaling=min-zoom&content-scaling=fixed&page-id=0%3A1">
+                    <i class="fas fa-play text-[10px]"></i>
+                    <span>Play in Modal</span>
+                </button>
+                <a href="https://www.figma.com/proto/0Yp2K18FFs6Djq4NEr5Pep/Zomato-Customer-Support-Experience-Design-Files?node-id=23-3&p=f&viewport=40%2C215%2C0.34&t=a0KFghUXnKLTMZiS-1&scaling=min-zoom&content-scaling=fixed&page-id=0%3A1" target="_blank" class="w-10 h-10 rounded-full glass flex items-center justify-center hover:bg-[var(--dark)] hover:text-white transition-colors" title="Open in Figma">
+                    <i class="fab fa-figma"></i>
+                </a>
+            </div>
+        </div>
+
+        <!-- CARD 4: Prototype Feature 2 - IRCTC (col-span-12 md:col-span-6 lg:col-span-4) -->
+        <div class="md:col-span-6 lg:col-span-4 glass rounded-[2.2rem] p-6 md:p-8 flex flex-col justify-between group hover:-translate-y-1.5 transition-all duration-500">
+            <div>
+                <div class="relative w-full h-52 rounded-2xl overflow-hidden mb-6 bg-[#E7E1D8] border border-white/70 shadow-sm">
+                    <img src="images/Case Study 2.png" alt="IRCTC Prototype" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent flex items-end p-4">
+                        <span class="text-xs text-white bg-black/50 backdrop-blur-md px-3 py-1 rounded-full border border-white/20">
+                            Desktop Web · Booking Journey
+                        </span>
+                    </div>
+                </div>
+
+                <div class="flex items-center justify-between mb-3">
+                    <span class="text-xs font-semibold text-[var(--accent)] uppercase tracking-wider">Prototype 02</span>
+                    <span class="text-xs text-muted">IRCTC Redesign</span>
+                </div>
+                <h4 class="text-2xl font-serif mb-2">Streamlined Ticket Flow</h4>
+                <p class="text-muted text-sm leading-relaxed mb-6">
+                    Interactive seat selection, multi-filter train search, and high-clarity quota comparison.
+                </p>
+            </div>
+
+            <div class="flex items-center gap-3 pt-4 border-t border-[rgba(80,70,55,0.12)]">
+                <button type="button" class="btn-primary text-xs py-3 px-4 flex-1 justify-center open-proto-modal-btn" data-prototype="irctc" data-title="IRCTC Booking Platform Redesign" data-badge="Desktop Web Prototype" data-device="desktop" data-figma-url="https://www.figma.com/proto/RhmiIl6S2sDL3PsatrJUqr/IRCTC-Re-Design?node-id=2020-824&viewport=-1496%2C949%2C0.42&t=ZTOcwyt6r2XghXRw-1&scaling=min-zoom&content-scaling=fixed&page-id=55%3A341">
+                    <i class="fas fa-play text-[10px]"></i>
+                    <span>Play in Modal</span>
+                </button>
+                <a href="https://www.figma.com/proto/RhmiIl6S2sDL3PsatrJUqr/IRCTC-Re-Design?node-id=2020-824&viewport=-1496%2C949%2C0.42&t=ZTOcwyt6r2XghXRw-1&scaling=min-zoom&content-scaling=fixed&page-id=55%3A341" target="_blank" class="w-10 h-10 rounded-full glass flex items-center justify-center hover:bg-[var(--dark)] hover:text-white transition-colors" title="Open in Figma">
+                    <i class="fab fa-figma"></i>
+                </a>
+            </div>
+        </div>
+
+        <!-- CARD 5: Prototype Feature 3 - Dating App Onboarding Flow (col-span-12 md:col-span-12 lg:col-span-4) -->
+        <div class="md:col-span-12 lg:col-span-4 glass rounded-[2.2rem] p-6 md:p-8 flex flex-col justify-between group hover:-translate-y-1.5 transition-all duration-500">
+            <div>
+                <div class="relative w-full h-52 rounded-2xl overflow-hidden mb-6 bg-[#E7E1D8] border border-white/70 shadow-sm">
+                    <img src="images/OnboardingFlowThumnail.png" alt="Dating App Onboarding Flow" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent flex items-end p-4">
+                        <span class="text-xs text-white bg-black/50 backdrop-blur-md px-3 py-1 rounded-full border border-white/20">
+                            Mobile Flow · Pink Edition
+                        </span>
+                    </div>
+                </div>
+
+                <div class="flex items-center justify-between mb-3">
+                    <span class="text-xs font-semibold text-[var(--accent)] uppercase tracking-wider">Prototype 03</span>
+                    <span class="text-xs text-muted">Dating App</span>
+                </div>
+                <h4 class="text-2xl font-serif mb-2">Onboarding Flow — Pink Edition</h4>
+                <p class="text-muted text-sm leading-relaxed mb-6">
+                    Interactive profile creation journey with preference selectors, playful transitions, and user delight.
+                </p>
+            </div>
+
+            <div class="flex items-center gap-3 pt-4 border-t border-[rgba(80,70,55,0.12)]">
+                <button type="button" class="btn-primary text-xs py-3 px-4 flex-1 justify-center open-proto-modal-btn" data-prototype="dating" data-title="Dating App — Onboarding Flow (Pink Edition)" data-badge="Mobile Flow Prototype" data-device="mobile" data-figma-url="https://www.figma.com/proto/yJjm9LR0Opvkf6OSNHn77z/Onboarding-Flow-%E2%80%93-Dating-App--Pink-Edition---Community-?node-id=1-579&viewport=25%2C268%2C0.18&t=mYXCmlcIvBSBtKWm-1&scaling=min-zoom&content-scaling=fixed&page-id=0%3A1">
+                    <i class="fas fa-play text-[10px]"></i>
+                    <span>Play in Modal</span>
+                </button>
+                <a href="https://www.figma.com/proto/yJjm9LR0Opvkf6OSNHn77z/Onboarding-Flow-%E2%80%93-Dating-App--Pink-Edition---Community-?node-id=1-579&viewport=25%2C268%2C0.18&t=mYXCmlcIvBSBtKWm-1&scaling=min-zoom&content-scaling=fixed&page-id=0%3A1" target="_blank" class="w-10 h-10 rounded-full glass flex items-center justify-center hover:bg-[var(--dark)] hover:text-white transition-colors" title="Open in Figma">
+                    <i class="fab fa-figma"></i>
+                </a>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+
 
 <!-- =====================================================
      LEARNING
@@ -2853,7 +3554,7 @@
             <div>
                 <p class="section-label mb-6">Learning</p>
                 <h2 class="text-5xl md:text-7xl leading-[0.95]">
-                    Always <span class="italic" style="color: var(--accent);">learning.</span>
+                    Always <span class="italic hero-italic-gradient">learning.</span>
                 </h2>
             </div>
             <div class="max-w-md">
@@ -2864,39 +3565,39 @@
         </div>
 
         <div class="learning-list border-t border-gray-300 relative">
-            <!-- Item 1 -->
-            <a href="Certificates/Google UX Design Certificate.jpg" target="_blank" data-image="Certificates/Google UX Design Certificate.jpg" class="learning-row group flex flex-col md:flex-row md:items-center justify-between py-8 border-b border-gray-300 transition-colors hover:border-[var(--accent)] px-4 -mx-4 cursor-none">
+            <!-- Item 1: Gold / Rose -->
+            <a href="Certificates/Google UX Design Certificate.jpg" target="_blank" data-image="Certificates/Google UX Design Certificate.jpg" class="learning-row group flex flex-col md:flex-row md:items-center justify-between py-8 border-b border-gray-300 transition-colors hover:border-[#FFAF4B] px-4 -mx-4 cursor-none">
                 <div class="flex items-center gap-8 mb-4 md:mb-0 z-10">
-                    <span class="text-sm font-serif text-muted group-hover:text-[var(--accent)] transition-colors">01</span>
-                    <h3 class="text-3xl group-hover:text-[var(--accent)] transition-colors">Google UX Design</h3>
+                    <span class="text-sm font-serif text-muted group-hover:text-[#FFAF4B] transition-colors">01</span>
+                    <h3 class="text-3xl group-hover:text-[#FF7891] transition-colors">Google UX Design</h3>
                 </div>
                 <div class="flex items-center gap-12 z-10">
                     <p class="text-muted group-hover:text-[var(--dark)] transition-colors">Professional Certificate</p>
-                    <i class="fas fa-arrow-right -rotate-45 text-xl opacity-0 group-hover:opacity-100 transition-all transform group-hover:translate-x-2 group-hover:-translate-y-2 text-[var(--accent)]"></i>
+                    <i class="fas fa-arrow-right -rotate-45 text-xl opacity-0 group-hover:opacity-100 transition-all transform group-hover:translate-x-2 group-hover:-translate-y-2 text-[#FF7891]"></i>
                 </div>
             </a>
 
-            <!-- Item 2 -->
-            <a href="Certificates/Udemy_Certificate.png" target="_blank" data-image="Certificates/Udemy_Certificate.png" class="learning-row group flex flex-col md:flex-row md:items-center justify-between py-8 border-b border-gray-300 transition-colors hover:border-[var(--accent)] px-4 -mx-4 cursor-none">
+            <!-- Item 2: Rose / Violet -->
+            <a href="Certificates/Udemy_Certificate.png" target="_blank" data-image="Certificates/Udemy_Certificate.png" class="learning-row group flex flex-col md:flex-row md:items-center justify-between py-8 border-b border-gray-300 transition-colors hover:border-[#FF7891] px-4 -mx-4 cursor-none">
                 <div class="flex items-center gap-8 mb-4 md:mb-0 z-10">
-                    <span class="text-sm font-serif text-muted group-hover:text-[var(--accent)] transition-colors">02</span>
-                    <h3 class="text-3xl group-hover:text-[var(--accent)] transition-colors">Web & Mobile Design</h3>
+                    <span class="text-sm font-serif text-muted group-hover:text-[#FF7891] transition-colors">02</span>
+                    <h3 class="text-3xl group-hover:text-[#AA7DFF] transition-colors">Web & Mobile Design</h3>
                 </div>
                 <div class="flex items-center gap-12 z-10">
                     <p class="text-muted group-hover:text-[var(--dark)] transition-colors">Complete UI/UX Design Program · Udemy</p>
-                    <i class="fas fa-arrow-right -rotate-45 text-xl opacity-0 group-hover:opacity-100 transition-all transform group-hover:translate-x-2 group-hover:-translate-y-2 text-[var(--accent)]"></i>
+                    <i class="fas fa-arrow-right -rotate-45 text-xl opacity-0 group-hover:opacity-100 transition-all transform group-hover:translate-x-2 group-hover:-translate-y-2 text-[#AA7DFF]"></i>
                 </div>
             </a>
 
-            <!-- Item 3 -->
-            <a href="Certificates/Accenture_Certification.png" target="_blank" data-image="Certificates/Accenture_Certification.png" class="learning-row group flex flex-col md:flex-row md:items-center justify-between py-8 border-b border-gray-300 transition-colors hover:border-[var(--accent)] px-4 -mx-4 cursor-none">
+            <!-- Item 3: Violet / Cyan -->
+            <a href="Certificates/Accenture_Certification.png" target="_blank" data-image="Certificates/Accenture_Certification.png" class="learning-row group flex flex-col md:flex-row md:items-center justify-between py-8 border-b border-gray-300 transition-colors hover:border-[#AA7DFF] px-4 -mx-4 cursor-none">
                 <div class="flex items-center gap-8 mb-4 md:mb-0 z-10">
-                    <span class="text-sm font-serif text-muted group-hover:text-[var(--accent)] transition-colors">03</span>
-                    <h3 class="text-3xl group-hover:text-[var(--accent)] transition-colors">Digital Skills: UX</h3>
+                    <span class="text-sm font-serif text-muted group-hover:text-[#AA7DFF] transition-colors">03</span>
+                    <h3 class="text-3xl group-hover:text-[#46C3FA] transition-colors">Digital Skills: UX</h3>
                 </div>
                 <div class="flex items-center gap-12 z-10">
                     <p class="text-muted group-hover:text-[var(--dark)] transition-colors">User Experience Program · Accenture</p>
-                    <i class="fas fa-arrow-right -rotate-45 text-xl opacity-0 group-hover:opacity-100 transition-all transform group-hover:translate-x-2 group-hover:-translate-y-2 text-[var(--accent)]"></i>
+                    <i class="fas fa-arrow-right -rotate-45 text-xl opacity-0 group-hover:opacity-100 transition-all transform group-hover:translate-x-2 group-hover:-translate-y-2 text-[#46C3FA]"></i>
                 </div>
             </a>
         </div>
@@ -2936,10 +3637,7 @@
 
                     Beyond the
 
-                    <span
-                        class="italic"
-                        style="color: var(--accent);"
-                    >
+                    <span class="italic hero-italic-gradient">
 
                         case studies.
 
@@ -3238,10 +3936,124 @@
 
 
 <!-- =====================================================
+     MOTION DESIGN & VISUAL DIRECTION
+===================================================== -->
+<section id="motion" class="max-w-6xl mx-auto px-6 py-32 border-t border-gray-200">
+    <div class="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-8">
+        <div>
+            <p class="section-label mb-6">
+                Motion Design · Visual Identity
+            </p>
+            <h2 class="text-5xl md:text-7xl leading-[0.95]">
+                Motion & visual <span class="italic hero-italic-gradient">direction.</span>
+            </h2>
+        </div>
+        <div class="max-w-md">
+            <p class="text-lg text-muted leading-relaxed">
+                Brand stylescapes, cinematic art direction, and fluid motion design exploring atmosphere, typography rhythm, and visual systems.
+            </p>
+        </div>
+    </div>
+
+    <div class="grid md:grid-cols-2 gap-8">
+        <!-- Stylescape 1 -->
+        <div class="motion-card glass rounded-[2.5rem] p-6 md:p-8 flex flex-col justify-between group hover:-translate-y-2 transition-all duration-500 border border-white/60">
+            <div class="relative w-full aspect-[16/9] rounded-2xl overflow-hidden mb-6 bg-[#171614] shadow-md border border-white/70">
+                <video
+                    src="Video/TOKYO BOTANICAL LAB — STYLESCAPE 1.mp4"
+                    poster="Video/TOKYO BOTANICAL LAB — STYLESCAPE 1.png"
+                    loop
+                    muted
+                    playsinline
+                    class="w-full h-full object-cover motion-video"
+                ></video>
+                <div class="absolute top-4 left-4 flex items-center gap-2 pointer-events-none">
+                    <span class="text-[10px] font-semibold tracking-wider uppercase px-2.5 py-1 rounded-full bg-black/60 text-white backdrop-blur-md border border-white/20 flex items-center gap-1.5">
+                        <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+                        Motion Reel
+                    </span>
+                    <span class="text-[10px] font-semibold tracking-wider uppercase px-2.5 py-1 rounded-full bg-black/60 text-[#D8BD92] backdrop-blur-md border border-white/20">
+                        Stylescape 01
+                    </span>
+                </div>
+                <button type="button" class="video-play-toggle absolute bottom-4 right-4 w-10 h-10 rounded-full bg-black/60 hover:bg-[var(--accent)] text-white backdrop-blur-md border border-white/30 flex items-center justify-center transition-all duration-300 shadow-lg" aria-label="Play video">
+                    <i class="fas fa-play text-xs play-icon"></i>
+                </button>
+            </div>
+
+            <div>
+                <div class="flex items-center justify-between mb-3">
+                    <span class="text-xs font-semibold text-[var(--accent)] uppercase tracking-wider">Brand Direction</span>
+                    <span class="text-xs text-muted">Tokyo Botanical Lab</span>
+                </div>
+                <h3 class="text-2xl md:text-3xl font-serif mb-3">Stylescape 01 — Organic Atmosphere</h3>
+                <p class="text-muted text-sm leading-relaxed mb-6">
+                    A calm, editorial exploration pairing natural botanical textures with clean Swiss typography, breathing space, and smooth horizontal motion.
+                </p>
+                <div class="flex flex-wrap gap-2 pt-4 border-t border-[rgba(80,70,55,0.12)]">
+                    <span class="tag text-xs">Brand Stylescape</span>
+                    <span class="tag text-xs">Art Direction</span>
+                    <span class="tag text-xs">Motion Design</span>
+                    <span class="tag text-xs">Typography Rhythm</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Stylescape 2 -->
+        <div class="motion-card glass rounded-[2.5rem] p-6 md:p-8 flex flex-col justify-between group hover:-translate-y-2 transition-all duration-500 border border-white/60">
+            <div class="relative w-full aspect-[16/9] rounded-2xl overflow-hidden mb-6 bg-[#171614] shadow-md border border-white/70">
+                <video
+                    src="Video/TOKYO BOTANICAL LAB — STYLESCAPE 2.mp4"
+                    poster="Video/TOKYO BOTANICAL LAB — STYLESCAPE 2.png"
+                    loop
+                    muted
+                    playsinline
+                    class="w-full h-full object-cover motion-video"
+                ></video>
+                <div class="absolute top-4 left-4 flex items-center gap-2 pointer-events-none">
+                    <span class="text-[10px] font-semibold tracking-wider uppercase px-2.5 py-1 rounded-full bg-black/60 text-white backdrop-blur-md border border-white/20 flex items-center gap-1.5">
+                        <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+                        Motion Reel
+                    </span>
+                    <span class="text-[10px] font-semibold tracking-wider uppercase px-2.5 py-1 rounded-full bg-black/60 text-[#D8BD92] backdrop-blur-md border border-white/20">
+                        Stylescape 02
+                    </span>
+                </div>
+                <button type="button" class="video-play-toggle absolute bottom-4 right-4 w-10 h-10 rounded-full bg-black/60 hover:bg-[var(--accent)] text-white backdrop-blur-md border border-white/30 flex items-center justify-center transition-all duration-300 shadow-lg" aria-label="Play video">
+                    <i class="fas fa-play text-xs play-icon"></i>
+                </button>
+            </div>
+
+            <div>
+                <div class="flex items-center justify-between mb-3">
+                    <span class="text-xs font-semibold text-[var(--accent)] uppercase tracking-wider">Visual System</span>
+                    <span class="text-xs text-muted">Tokyo Botanical Lab</span>
+                </div>
+                <h3 class="text-2xl md:text-3xl font-serif mb-3">Stylescape 02 — Kinetic Architecture</h3>
+                <p class="text-muted text-sm leading-relaxed mb-6">
+                    A bolder, high-contrast visual system highlighting experimental layout structures, kinetic transitions, and modern brand presence.
+                </p>
+                <div class="flex flex-wrap gap-2 pt-4 border-t border-[rgba(80,70,55,0.12)]">
+                    <span class="tag text-xs">Kinetic Typography</span>
+                    <span class="tag text-xs">Visual Identity</span>
+                    <span class="tag text-xs">Brand Motion</span>
+                    <span class="tag text-xs">Concept Design</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+<!-- =====================================================
      CONTACT
 ===================================================== -->
 
 <section id="contact" class="contact-section">
+
+    <div class="contact-ambient contact-ambient-one"></div>
+    <div class="contact-ambient contact-ambient-two"></div>
 
     <div
         class="max-w-6xl mx-auto px-6 py-32 md:py-40 text-center relative z-10"
@@ -3249,7 +4061,7 @@
 
         <p
             class="section-label mb-7"
-            style="color: #D8BD92;"
+            style="color: #FFAF4B;"
         >
 
             Get In Touch
@@ -3263,10 +4075,7 @@
 
             Let's create something
 
-            <span
-                class="italic"
-                style="color: #D8BD92;"
-            >
+            <span class="italic contact-italic-gradient">
 
                 meaningful.
 
@@ -3385,6 +4194,84 @@
 
 </footer>
 
+
+
+<!-- =====================================================
+     FIGMA INTERACTIVE PROTOTYPE MODAL
+===================================================== -->
+<div id="figma-modal" class="fixed inset-0 z-[120] bg-[rgba(20,19,17,0.88)] backdrop-blur-xl opacity-0 flex items-center justify-center p-2 sm:p-4 md:p-6 transition-all duration-300 pointer-events-none" style="display: none;">
+    <div class="modal-card relative w-full max-w-6xl h-[92vh] max-h-[880px] rounded-[26px] border border-[rgba(255,255,255,0.18)] bg-[#181715] text-white flex flex-col overflow-hidden shadow-2xl">
+        
+        <!-- Modal Top Bar -->
+        <div class="px-5 py-3.5 border-b border-[rgba(255,255,255,0.1)] flex items-center justify-between gap-4 bg-[#141311]">
+            <div class="flex items-center gap-3 min-w-0">
+                <div class="w-8 h-8 rounded-full bg-[rgba(161,126,79,0.25)] flex items-center justify-center text-[var(--accent)] shrink-0">
+                    <i class="fab fa-figma"></i>
+                </div>
+                <div class="min-w-0">
+                    <div class="flex items-center gap-2 truncate">
+                        <h4 id="modal-title" class="font-medium text-sm md:text-base text-white truncate">Zomato Customer Support Experience</h4>
+                        <span id="modal-badge" class="hidden sm:inline-block text-[10px] font-semibold tracking-wider uppercase px-2 py-0.5 rounded-full bg-[rgba(161,126,79,0.2)] text-[#D8BD92] border border-[rgba(161,126,79,0.3)] shrink-0">Mobile Flow</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Prototype Switcher Pills -->
+            <div class="flex items-center gap-1 p-1 rounded-full bg-[rgba(255,255,255,0.06)] border border-[rgba(255,255,255,0.08)] text-xs">
+                <button type="button" class="modal-tab-btn px-3 py-1 rounded-full transition-all active bg-[var(--accent)] text-white font-medium" data-target="zomato">Zomato</button>
+                <button type="button" class="modal-tab-btn px-3 py-1 rounded-full transition-all text-gray-400 hover:text-white" data-target="irctc">IRCTC</button>
+                <button type="button" class="modal-tab-btn px-3 py-1 rounded-full transition-all text-gray-400 hover:text-white" data-target="dating">Dating App</button>
+            </div>
+
+            <!-- Action Controls -->
+            <div class="flex items-center gap-2 sm:gap-3 shrink-0">
+                <a id="modal-figma-link" href="https://www.figma.com/proto/0Yp2K18FFs6Djq4NEr5Pep/Zomato-Customer-Support-Experience-Design-Files?node-id=23-3&p=f&viewport=40%2C215%2C0.34&t=a0KFghUXnKLTMZiS-1&scaling=min-zoom&content-scaling=fixed&page-id=0%3A1" target="_blank" class="hidden sm:inline-flex items-center gap-2 text-xs font-medium px-3.5 py-1.5 rounded-full bg-[rgba(255,255,255,0.1)] hover:bg-[var(--accent)] text-white transition-colors" title="Open Fullscreen in Figma">
+                    <span>Fullscreen</span>
+                    <i class="fas fa-arrow-up-right-from-square text-[10px]"></i>
+                </a>
+                <button id="close-modal-btn" type="button" class="w-8 h-8 md:w-9 md:h-9 rounded-full bg-[rgba(255,255,255,0.08)] hover:bg-white hover:text-[var(--dark)] flex items-center justify-center text-gray-300 transition-colors" aria-label="Close modal">
+                    <i class="fas fa-times text-sm"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Modal Viewport Content (Clean, Borderless, Native Figma Canvas) -->
+        <div class="relative flex-1 w-full h-[80vh] min-h-[580px] max-h-[840px] bg-[#121110] flex items-center justify-center overflow-hidden">
+            
+            <!-- Loading Indicator -->
+            <div id="modal-loading-spinner" class="absolute inset-0 flex flex-col items-center justify-center gap-3 bg-[#121110]/95 backdrop-blur-sm z-30 transition-opacity duration-300 pointer-events-none">
+                <div class="w-8 h-8 rounded-full border-2 border-[var(--accent)] border-t-transparent animate-spin"></div>
+                <p class="text-xs text-gray-400 font-medium tracking-wide">Connecting live Figma prototype...</p>
+            </div>
+
+            <!-- Single Full-Bleed Live Figma Iframe with Native Alignment -->
+            <iframe
+                id="modal-figma-iframe"
+                src=""
+                class="w-full h-full border-0 bg-[#121110]"
+                allowfullscreen
+                loading="lazy"
+            ></iframe>
+
+        </div>
+
+        <!-- Modal Bottom Bar -->
+        <div class="px-6 py-3 border-t border-[rgba(255,255,255,0.1)] flex flex-wrap items-center justify-between gap-3 text-xs text-gray-400 bg-[#141311] shrink-0">
+            <div class="flex items-center gap-2">
+                <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+                <span>Real-time interactive Figma prototype · Click & test flows</span>
+            </div>
+            <div class="flex items-center gap-4">
+                <span class="hidden md:inline text-gray-500">Press <kbd class="px-1.5 py-0.5 rounded bg-white/10 text-gray-300 font-mono text-[10px]">Esc</kbd> to close</span>
+                <a href="https://www.figma.com/@RaiShivu" target="_blank" class="text-[var(--accent)] hover:underline flex items-center gap-1 font-medium">
+                    <span>@RaiShivu on Community</span>
+                    <i class="fas fa-arrow-right text-[10px]"></i>
+                </a>
+            </div>
+        </div>
+
+    </div>
+</div>
 
 </main>
 
@@ -3806,6 +4693,69 @@
         });
     }
 
+    /* INTERACTIVE GLASS: SUNLIGHT TILT & CHROMATIC GLOW */
+    if (window.matchMedia("(pointer: fine)").matches) {
+        const glassCards = document.querySelectorAll(
+            '#figma-community .grid > div.glass, .about-card, .about-profile-card, .motion-card, .experience-bento, .project, .hero-stats'
+        );
+
+        glassCards.forEach(card => {
+            card.classList.add('interactive-glass');
+
+            card.addEventListener('mouseenter', () => {
+                card.classList.add('is-hovered');
+                card.style.setProperty('--glass-glow-opacity', '1');
+                card.style.setProperty('--glass-ray-opacity', '1');
+            });
+
+            card.addEventListener('mousemove', (e) => {
+                const rect = card.getBoundingClientRect();
+                const mouseX = e.clientX - rect.left;
+                const mouseY = e.clientY - rect.top;
+
+                const px = Math.max(0, Math.min(1, mouseX / rect.width));
+                const py = Math.max(0, Math.min(1, mouseY / rect.height));
+
+                // Position the colorful gradient behind the frosted glass directly under the mouse
+                card.style.setProperty('--mouse-x', `${(px * 100).toFixed(1)}%`);
+                card.style.setProperty('--mouse-y', `${(py * 100).toFixed(1)}%`);
+
+                // Move the specular sunbeam reflection across the glass surface
+                const sunPos = (px * 65 + py * 35).toFixed(1);
+                const sunAngle = (120 + (px - 0.5) * 25).toFixed(1);
+                card.style.setProperty('--sun-pos', `${sunPos}%`);
+                card.style.setProperty('--sun-angle', `${sunAngle}deg`);
+
+                // Gentle 3D perspective tilt following the cursor
+                const tiltX = ((py - 0.5) * -7).toFixed(2);
+                const tiltY = ((px - 0.5) * 7).toFixed(2);
+
+                gsap.to(card, {
+                    rotateX: tiltX,
+                    rotateY: tiltY,
+                    y: -4,
+                    duration: 0.25,
+                    ease: "power1.out",
+                    transformPerspective: 900
+                });
+            });
+
+            card.addEventListener('mouseleave', () => {
+                card.classList.remove('is-hovered');
+                card.style.setProperty('--glass-glow-opacity', '0');
+                card.style.setProperty('--glass-ray-opacity', '0');
+
+                gsap.to(card, {
+                    rotateX: 0,
+                    rotateY: 0,
+                    y: 0,
+                    duration: 0.6,
+                    ease: "power2.out"
+                });
+            });
+        });
+    }
+
     /* SCROLL SPY NAVIGATION */
     const sections = document.querySelectorAll("section");
     const navLinks = document.querySelectorAll(".nav-link");
@@ -3828,6 +4778,230 @@
         });
     });
 
+    /* ABOUT ANIMATIONS */
+    gsap.from(".about-profile-card", {
+        scrollTrigger: {
+            trigger: "#about",
+            start: "top 85%",
+            toggleActions: "play reverse play reverse"
+        },
+        y: 40,
+        opacity: 0,
+        duration: 0.9,
+        ease: "power4.out"
+    });
+
+    gsap.utils.toArray(".about-card").forEach((card, i) => {
+        gsap.from(card, {
+            scrollTrigger: {
+                trigger: card,
+                start: "top 88%",
+                toggleActions: "play reverse play reverse"
+            },
+            y: 35,
+            opacity: 0,
+            duration: 0.8,
+            ease: "power3.out",
+            delay: i * 0.1
+        });
+    });
+
+    /* FIGMA COMMUNITY BENTO */
+    gsap.utils.toArray("#figma-community .glass").forEach((bento, i) => {
+        gsap.from(bento, {
+            scrollTrigger: {
+                trigger: bento,
+                start: "top 88%",
+                toggleActions: "play reverse play reverse"
+            },
+            y: 40,
+            opacity: 0,
+            duration: 0.8,
+            ease: "power3.out",
+            delay: (i % 3) * 0.1
+        });
+    });
+
+    /* FIGMA PROTOTYPE MODAL */
+    const figmaModal = document.getElementById("figma-modal");
+    const closeModalBtn = document.getElementById("close-modal-btn");
+    const modalTitle = document.getElementById("modal-title");
+    const modalBadge = document.getElementById("modal-badge");
+    const modalFigmaIframe = document.getElementById("modal-figma-iframe");
+    const modalLoadingSpinner = document.getElementById("modal-loading-spinner");
+    const modalFigmaLink = document.getElementById("modal-figma-link");
+    const modalTabBtns = document.querySelectorAll(".modal-tab-btn");
+
+    const prototypesData = {
+        zomato: {
+            title: "Zomato Customer Support Experience",
+            badge: "Mobile Flow · Smart Animate",
+            device: "mobile",
+            url: "https://www.figma.com/proto/0Yp2K18FFs6Djq4NEr5Pep/Zomato-Customer-Support-Experience-Design-Files?node-id=23-3&p=f&viewport=40%2C215%2C0.34&t=a0KFghUXnKLTMZiS-1&scaling=min-zoom&content-scaling=fixed&page-id=0%3A1",
+            embedUrl: "https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Fproto%2F0Yp2K18FFs6Djq4NEr5Pep%2FZomato-Customer-Support-Experience-Design-Files%3Fnode-id%3D23-3%26p%3Df%26viewport%3D40%252C215%252C0.34%26t%3Da0KFghUXnKLTMZiS-1%26scaling%3Dmin-zoom%26content-scaling%3Dfixed%26page-id%3D0%253A1"
+        },
+        irctc: {
+            title: "IRCTC Booking Experience Redesign",
+            badge: "Desktop Web · Booking Journey",
+            device: "desktop",
+            url: "https://www.figma.com/proto/RhmiIl6S2sDL3PsatrJUqr/IRCTC-Re-Design?node-id=2020-824&viewport=-1496%2C949%2C0.42&t=ZTOcwyt6r2XghXRw-1&scaling=min-zoom&content-scaling=fixed&page-id=55%3A341",
+            embedUrl: "https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Fproto%2FRhmiIl6S2sDL3PsatrJUqr%2FIRCTC-Re-Design%3Fnode-id%3D2020-824%26viewport%3D-1496%252C949%252C0.42%26t%3DZTOcwyt6r2XghXRw-1%26scaling%3Dmin-zoom%26content-scaling%3Dfixed%26page-id%3D55%253A341"
+        },
+        dating: {
+            title: "Dating App — Onboarding Flow (Pink Edition)",
+            badge: "Mobile Flow · Pink Edition",
+            device: "mobile",
+            url: "https://www.figma.com/proto/yJjm9LR0Opvkf6OSNHn77z/Onboarding-Flow-%E2%80%93-Dating-App--Pink-Edition---Community-?node-id=1-579&viewport=25%2C268%2C0.18&t=mYXCmlcIvBSBtKWm-1&scaling=min-zoom&content-scaling=fixed&page-id=0%3A1",
+            embedUrl: "https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Fproto%2FyJjm9LR0Opvkf6OSNHn77z%2FOnboarding-Flow-%25E2%2580%2593-Dating-App--Pink-Edition---Community-%3Fnode-id%3D1-579%26viewport%3D25%252C268%252C0.18%26t%3DmYXCmlcIvBSBtKWm-1%26scaling%3Dmin-zoom%26content-scaling%3Dfixed%26page-id%3D0%253A1"
+        }
+    };
+
+    let spinnerTimeout = null;
+
+    function showSpinner() {
+        if (!modalLoadingSpinner) return;
+        modalLoadingSpinner.style.opacity = "1";
+        modalLoadingSpinner.style.pointerEvents = "auto";
+        if (spinnerTimeout) clearTimeout(spinnerTimeout);
+        spinnerTimeout = setTimeout(hideSpinner, 3200);
+    }
+
+    function hideSpinner() {
+        if (!modalLoadingSpinner) return;
+        modalLoadingSpinner.style.opacity = "0";
+        modalLoadingSpinner.style.pointerEvents = "none";
+    }
+
+    if (modalFigmaIframe) {
+        modalFigmaIframe.addEventListener("load", hideSpinner);
+    }
+
+    function setModalPrototype(key) {
+        const data = prototypesData[key] || prototypesData.zomato;
+        if (modalTitle) modalTitle.textContent = data.title;
+        if (modalBadge) modalBadge.textContent = data.badge;
+        if (modalFigmaLink) modalFigmaLink.href = data.url;
+
+        modalTabBtns.forEach(btn => {
+            if (btn.getAttribute("data-target") === key) {
+                btn.classList.add("active", "bg-[var(--accent)]", "text-white");
+                btn.classList.remove("text-gray-400");
+            } else {
+                btn.classList.remove("active", "bg-[var(--accent)]", "text-white");
+                btn.classList.add("text-gray-400");
+            }
+        });
+
+        showSpinner();
+
+        if (modalFigmaIframe && modalFigmaIframe.src !== data.embedUrl) {
+            modalFigmaIframe.src = data.embedUrl;
+        } else {
+            hideSpinner();
+        }
+    }
+
+    function openModal(key) {
+        setModalPrototype(key);
+        if (figmaModal) {
+            figmaModal.style.display = "flex";
+            figmaModal.classList.remove("pointer-events-none");
+            document.body.classList.add("modal-open");
+            gsap.to(figmaModal, { opacity: 1, duration: 0.3, ease: "power2.out" });
+            gsap.fromTo(".modal-card", { scale: 0.95, y: 16 }, { scale: 1, y: 0, duration: 0.4, ease: "back.out(1.2)" });
+        }
+    }
+
+    function closeModal() {
+        if (figmaModal) {
+            gsap.to(figmaModal, {
+                opacity: 0,
+                duration: 0.25,
+                ease: "power2.in",
+                onComplete: () => {
+                    figmaModal.style.display = "none";
+                    figmaModal.classList.add("pointer-events-none");
+                    document.body.classList.remove("modal-open");
+                    if (modalFigmaIframe) modalFigmaIframe.src = "";
+                    hideSpinner();
+                }
+            });
+        }
+    }
+
+    document.querySelectorAll(".open-proto-modal-btn").forEach(btn => {
+        btn.addEventListener("click", (e) => {
+            e.preventDefault();
+            const protoKey = btn.getAttribute("data-prototype") || "zomato";
+            openModal(protoKey);
+        });
+    });
+
+    modalTabBtns.forEach(btn => {
+        btn.addEventListener("click", () => {
+            const protoKey = btn.getAttribute("data-target");
+            setModalPrototype(protoKey);
+        });
+    });
+
+    if (closeModalBtn) {
+        closeModalBtn.addEventListener("click", closeModal);
+    }
+
+    if (figmaModal) {
+        figmaModal.addEventListener("click", (e) => {
+            if (e.target === figmaModal) closeModal();
+        });
+    }
+
+    document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape" && figmaModal && figmaModal.style.display === "flex") {
+            closeModal();
+        }
+    });
+
+    /* MOTION DESIGN VIDEOS INTERACTION */
+    const motionCards = document.querySelectorAll(".motion-card");
+    motionCards.forEach(card => {
+        const video = card.querySelector(".motion-video");
+        const toggleBtn = card.querySelector(".video-play-toggle");
+        const playIcon = card.querySelector(".play-icon");
+
+        if (!video) return;
+
+        function updatePlayIcon(isPlaying) {
+            if (!playIcon) return;
+            if (isPlaying) {
+                playIcon.classList.remove("fa-play");
+                playIcon.classList.add("fa-pause");
+            } else {
+                playIcon.classList.remove("fa-pause");
+                playIcon.classList.add("fa-play");
+            }
+        }
+
+        if (toggleBtn) {
+            toggleBtn.addEventListener("click", (e) => {
+                e.stopPropagation();
+                if (video.paused) {
+                    video.play().then(() => updatePlayIcon(true)).catch(() => {});
+                } else {
+                    video.pause();
+                    updatePlayIcon(false);
+                }
+            });
+        }
+
+        card.addEventListener("mouseenter", () => {
+            video.play().then(() => updatePlayIcon(true)).catch(() => {});
+        });
+
+        card.addEventListener("mouseleave", () => {
+            video.pause();
+            updatePlayIcon(false);
+        });
+    });
+
 </script>
 
 
@@ -3838,8 +5012,23 @@
 <style>
     /* CUSTOM CURSOR STYLES */
     @media (pointer: fine) {
-        body, a, button, input, textarea, select {
+        body:not(.modal-open),
+        body:not(.modal-open) a,
+        body:not(.modal-open) button,
+        body:not(.modal-open) input,
+        body:not(.modal-open) textarea,
+        body:not(.modal-open) select {
             cursor: none;
+        }
+
+        body.modal-open,
+        body.modal-open * {
+            cursor: auto !important;
+        }
+
+        body.modal-open .custom-cursor,
+        body.modal-open .custom-cursor-follower {
+            display: none !important;
         }
 
         .custom-cursor {
@@ -3848,12 +5037,13 @@
             left: 0;
             width: 8px;
             height: 8px;
-            background-color: var(--accent);
+            background: linear-gradient(135deg, #FFAF4B, #FF7891);
             border-radius: 50%;
             pointer-events: none;
             z-index: 9999;
             transform: translate(-50%, -50%);
             transition: transform 0.1s ease;
+            box-shadow: 0 0 10px rgba(255, 120, 145, 0.6);
         }
 
         .custom-cursor-follower {
@@ -3862,13 +5052,13 @@
             left: 0;
             width: 32px;
             height: 32px;
-            border: 1px solid var(--accent);
-            background-color: rgba(161, 126, 79, 0.1);
+            border: 1.5px solid rgba(255, 120, 145, 0.45);
+            background: radial-gradient(circle, rgba(255, 175, 75, 0.08) 0%, rgba(170, 125, 255, 0.04) 100%);
             border-radius: 50%;
             pointer-events: none;
             z-index: 9998;
             transform: translate(-50%, -50%);
-            transition: transform 0.3s ease, width 0.3s ease, height 0.3s ease, background-color 0.3s ease;
+            transition: transform 0.3s ease, width 0.3s ease, height 0.3s ease, background 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
         }
 
         .custom-cursor.hover {
@@ -3876,9 +5066,11 @@
         }
 
         .custom-cursor-follower.hover {
-            width: 48px;
-            height: 48px;
-            background-color: rgba(161, 126, 79, 0.2);
+            width: 50px;
+            height: 50px;
+            border-color: rgba(170, 125, 255, 0.8);
+            background: radial-gradient(circle, rgba(255, 175, 75, 0.2) 0%, rgba(255, 120, 145, 0.15) 50%, rgba(70, 195, 250, 0.1) 100%);
+            box-shadow: 0 0 25px rgba(170, 125, 255, 0.25);
         }
     }
     @media (pointer: coarse) {
